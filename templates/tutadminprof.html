@@ -1,0 +1,59 @@
+{% extends 'head.html' %}
+    {% block body%}
+        
+        <div class=" row">
+            <div class=" col-md-4 col-sm-12 text-center card mt-2 " id="dataPart">
+                <!-- <img class=" card-img w-25 rounded-circle" id="propic" src="yourstutor.png"><br> -->
+                <h4 class=" m-3">Name</h4><h5 id="PName">{{ tutor.fname }}</h5>
+                <h4 class=" m-3">Email</h4><h5 id="PEmail">{{tutor.email}}</h5>
+                <h4 class=" m-3">Phone</h4><h5 id="PPhone">{{tutor.phone}}</h5>
+                <h4 class=" m-3">District</h4><h5 id="PDist">{{tutor.dist}}</h5>
+                <h4 class=" m-3">Taluk</h4><h5 id="PCity">{{tutor.taluk}}</h5>
+                <h4 class=" m-3">Village</h4><h5 id="PTown">{{tutor.village}}</h5>
+                <h4 class=" m-3">Qualification</h4><h5 id="PQuali">{{tutor.qualification}}</h5>
+                <h4 class=" m-3">Prefered Tuision</h4><h5 id="PTuit">{{tutor.tuition}}</h5>
+                <h4 class=" m-3">Date of Birth</h4><h5 id="PDob">{{tutor.dob}}</h5>
+                
+            </div>
+            <div class=" col-md-8 col-sm-12 text-center card  mt-2">
+                <div class=" row p-4">
+                    <!-- <div class=" col-md-5 col-sm-5 card bg-success m-3" id="monGet">
+                        <h4 class="card-title text-light">Total Get</h4><h2 id="monGetData" class="card_data text-center text-white"></h2>
+                            
+                        </div>
+                        <div class=" col-md-5 col-sm-5 card bg-warning m-3" id="monPay">
+                        <h4 class="card_title text-light">Pay</h4><h2 id="monPayData" class="card_data text-center text-white h-50"></h2>
+                            
+                        </div> -->
+                </div>
+                   
+                    
+                 <h4>Identity card</h4>
+                <img id="qual" class=" card-img m-2 h-50 w-100" src={{tutor.image}}>
+                    {#<script> 
+                        var nam=localStorage.getItem("user");</script>#}
+                        <div class="w-50 align-self-center mt-4">
+                        {% if not tutor.isvarify%}
+                <form method="POST" action="/tutor/verify" >
+                    <input type="text" value="{{tutor.username}}" name='username' style='display:none'><br>
+
+                    <button type="submit" class=" form-control btn-success">Varify</button>
+                  </form>
+                  {% endif %}
+                  <form method="POST" action="/tutor/delete" >
+                    <input type="text" value="{{tutor.username}}" name='username' style='display:none'><br>
+
+                    <button type="submit" class=" form-control btn-danger">Delete</button>
+                  </form>
+                        </div>
+                    <!-- <h4>Aadhaar Cad</h4>
+                    <img id="icard" class=" card-img"> -->
+              </div>
+            
+            </div>
+    {% endblock body%}
+   
+
+        
+
+

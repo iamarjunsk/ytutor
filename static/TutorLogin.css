@@ -1,0 +1,50 @@
+
+body{
+    background-color: aliceblue;
+    margin-top: 134px;
+    
+}
+#logincol{
+    background-color: bisque;
+    width: 370px;
+    height: 500px;
+    
+}
+#txtEmail{
+   background-color: aliceblue;
+    border-radius: 5px;
+    height: 33px;
+}
+#txtPass{
+   background-color: aliceblue;
+    border-radius: 5px;
+    height: 33px;
+}
+#txtId{
+   background-color: aliceblue;
+    border-radius: 5px;
+    height: 33px;
+}
+#wlcomTxt{
+   margin-top: 22px;
+}
+#usrpic{
+    width: 114px;
+    height: 114px;
+    border-radius: 50%;
+    position: absolute;
+    left: 46%;
+    top: 12%
+}
+#btnLogin{
+    background-color:burlywood;
+    color: white;
+}
+a{
+    float: right;
+    margin-right: 6px;
+}
+
+
+
+

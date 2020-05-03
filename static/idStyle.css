@@ -1,0 +1,16 @@
+#Tlogo{
+    width: 110px;
+    height: 110px;
+}
+#nv{
+    margin: 40px;
+    
+}
+.nv{
+    float: left;
+}
+#notes{
+    margin: 0px;
+    color: aliceblue;
+    margin-bottom: 80px;
+}

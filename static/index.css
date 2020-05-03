@@ -1,0 +1,142 @@
+#logo{
+    
+    height: 144px;
+    width: 144px;
+}
+#title{
+    font-size: 34px;
+    margin-top: 55px;
+}
+h6{
+ 
+    color:red;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white
+}
+h6:hover{
+    background-color: black;
+    font-weight: 500;
+}
+#logSec{
+    width: 210px;
+    background-color: azure;
+    position: absolute;
+    right: 12%;
+    top: 23%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 7px;
+}
+.logSec{
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: 300;
+    width: 210px;
+    
+}
+.hov{
+   height: 70px; 
+}
+.hov:hover{
+    background-color: red;
+    color: black;
+}
+.logSec:hover{
+    color: white;
+}
+.crs{
+    width: 20%;
+    height: 150px;
+    background-color: aqua;
+    margin:6.666666666666667% ;
+    float: left;
+    border-radius: 7px;
+    
+}
+
+#crsBlk{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 90%;
+
+}
+#crs1{
+    background-color: red;
+    color: aliceblue;
+    
+    
+}
+#crs2{
+    background-color: green;
+    color: aliceblue;
+}
+#crs3{
+    background-color: blue;
+    color: aliceblue;
+}
+#botm{
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    top: 300%;
+    position: absolute;
+}
+.sm{
+    height: 30px;
+    width: 30px;
+    margin: 10px;
+}
+#soc{
+    margin-left: 95%;
+    position: fixed;
+}
+#LLOO{
+    color: white;
+}
+#tags{
+    position: absolute;
+    top: 24%;
+    left: 4%;
+}
+.subtag{
+    color:chartreuse;
+    opacity: 1;
+}
+#opac{
+    padding: 14px;
+    background-color: black;
+    opacity: .6;
+    border-radius: 7px;
+}
+#var{
+    color:#fcca03 ;
+    opacity: 1;
+}
+p{
+    color: #fcf803;
+    opacity: 10;
+    font-size: 17px;
+}
+#homeT{
+    width: 100%;
+    position: absolute;
+    top: 150%;
+    background-color: red;
+    opacity: .7;
+}
+.hf{
+    text-decoration: none;
+    color: white;
+}
+#ielts{
+     width: 100%;
+    position: absolute;
+    top: 200%;
+    background-color: red;
+    opacity: .7;
+}

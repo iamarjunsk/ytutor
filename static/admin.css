@@ -1,0 +1,61 @@
+body{
+    background-color: darkslategray;
+}
+.card{
+    background-color: aliceblue;
+    width: 400px;
+    height: 200px;
+    border-radius: 20px;
+    margin: 17px;
+}
+.card_title{
+    background-color: darkcyan;
+    width: 400px;
+    height: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: aliceblue;
+    padding-top: 1px;
+    font-size: 8px;
+}
+.titleTExt{
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+.card_data{
+    float: left;
+    width: 300px;
+    height: auto;
+}
+.card_button{
+    width: 100px;
+    height: 150px;
+    float: left;
+
+}
+h6{
+    padding: 0px;
+    float: left;
+}
+button{
+    width: 80px;
+    height: 30px;
+    border-top: 30px;
+    margin-top: 30px;
+}
+#varify{
+    background-color: blue;
+    color: aliceblue;
+}
+img{
+    height: 50px;
+    width: 50px;
+    
+    margin-left: 120px;
+    position: absolute;
+    float: right;
+}
+#locn{
+    width: 300px;
+    height: 45px;
+}

@@ -1,0 +1,56 @@
+
+.profile{
+    margin-left: 60px;
+    margin-top: 60px;
+    width: 40%;
+    float: left;
+    margin-bottom: 15px;
+}
+#propic{
+    height: 90px;
+    width: 90px;
+    
+    border-radius: 50%;
+}
+.varify{
+    width:35%;
+    float: left;
+   
+}
+.imag{
+    height: 240px;
+    width: 440px;
+    margin: 20px;
+}
+#btnVry{
+    margin-top: 9px;
+    background-color: #2ce868;
+    color: #ffffff;
+}
+#monGet{
+    width: 160px;
+    height: 160px;
+    float: left;
+    background-color: red;
+    margin: 5px;
+}
+#monPay{
+    width: 160px;
+    height: 160px;
+    float: left;
+    background-color: green;
+    margin: 5px;
+}
+.MonText{
+    color: aliceblue;
+}
+#edit{
+    width: 100%;
+    text-align: left;
+    margin-top: 10%;
+}
+#btnDel{
+    background-color: #d31616;
+    margin-top: 9px;
+    color: #ffffff;
+}
