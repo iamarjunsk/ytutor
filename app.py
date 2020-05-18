@@ -11,7 +11,7 @@ import smtplib
 
 app=Flask(__name__)
 
-ENV='dev'
+ENV='prod'
 if ENV == 'dev':
     app.debug=True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:sk@localhost/yt'
