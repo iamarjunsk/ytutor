@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.fname}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" href="../satic/favicon.ico" type="image/x-icon">
+    <link href="../static/fonts/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet"> 
+    <script src="https://kit.fontawesome.com/417090db95.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark row">
+        <div class="col-8 pl-6 ml-4 ">
+            <a class="navbar-brand" href="/"><img src="../static/yourstutor.png" width="60" height="60" alt=""></a>
+            
+        </div>
+        <button class="navbar-toggler collapsed mr-3" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="col-4">
+            <div class="row" >
+                <div class="col-3 p-4">
+                    <sk class=" titleTExt text-light text-right p-3 text-uppercase">{{user.fname}}</sk>
+                </div>
+                <div class="col-3">
+                    <div class="navbar-collapse collapse m-6 " id="navbarColor01">
+                      <ul class="navbar-nav mr-auto">
+                        
+                        <li class="nav-item">
+                          <a class="nav-link" href="/student/login"><button class="btn btn-outline-danger m-2" type="button">Logout</button></a>
+                        </li>
+                        
+                      </ul>
+                     
+                    </div>
+
+                </div>
+            </div>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 mt-5 pt-4" style="font-family: 'Caveat', cursive;">
+                <h2> Hai {{user.fname}}</h2>
+            </div>
+            <div class="col-md-4 col-sm-12 p-2">
+                <div class="card">
+                    <div class="card-body text-dark " style="height: 100%; box-shadow: 2px 2px 14px 4px #888888;">
+                        <table>
+                            <tr>
+                                <th class="p-2">
+                                    Name 
+                                </th>
+                                <td class="p-2">
+                                    {{user.fname}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="p-2">
+                                    Username 
+                                </th>
+                                <td class="p-2">
+                                    {{user.username}}
+                                </td>
+                            </tr>
+                            {% if user.tutid%}
+                            <tr>
+                                <th class="p-2">
+                                    ID 
+                                </th>
+                                <td class="p-2">
+                                    {{user.tutid}}
+                                </td>
+                            </tr>
+                                
+                            {% endif %}
+                            <tr>
+                                <th class="p-2">
+                                    DOB 
+                                </th>
+                                <td class="p-2">
+                                    {{user.dob}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="p-2">
+                                    Phone 
+                                </th>
+                                <td class="p-2">
+                                    {{user.phone}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="p-2">
+                                    Parent 
+                                </th>
+                                <td class="p-2">
+                                    {{user.parent}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="p-2">
+                                    District 
+                                </th>
+                                <td class="p-2">
+                                    {{user.district}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="p-2">
+                                    Taluk 
+                                </th>
+                                <td class="p-2">
+                                    {{user.taluk}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="p-2">
+                                    Place
+                                </th>
+                                <td class="p-2">
+                                    {{user.village}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="p-2">
+                                    Tuition
+                                </th>
+                                <td class="p-2">
+                                    {{user.tuition}}
+                                </td>
+                            </tr>
+                                {% if user.maths %}
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        Maths
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if user.science %}
+                                <tr>
+                                    <th></th>
+                                    
+                                    <td>
+                                        Science
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if user.social %}
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        Social
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if user.computer %}
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        Computer
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if user.physics %}
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        Physics
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if user.chemistry %}
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        Chemistry
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if user.biology %}
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        Biology
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if user.scmaths %}
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        Maths
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tr>
+                            {% if user.extra%}
+                                <tr>
+                                    <th class="p-2">
+                                        Extra
+                                    </th>
+                                    <td class="p-2">
+                                        {{ user.extra }}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            <tr>
+                                <th class="p-2">Gender</th>
+                                {% if user.ismale %}
+                                <td class="p-2">
+                                    Male
+                                </td>
+                                {% else %}
+                                <td class="p-2">
+                                    Female
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th class="p-2">Verification</th>
+                                {% if user.isvaridy %}
+                                <td class="p-2 text-success">
+                                    Verified
+                                </td>
+                                {% else %}
+                                <td class="p-2 text-danger">
+                                    Not varified
+                                </td>
+                                {% endif %}
+                            </tr>
+                        </table>       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+    

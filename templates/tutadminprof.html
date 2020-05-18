@@ -36,7 +36,9 @@
                         {% if not tutor.isvarify%}
                 <form method="POST" action="/tutor/verify" >
                     <input type="text" value="{{tutor.username}}" name='username' style='display:none'><br>
-
+                    Tutor id is will be assigned
+                    <input type="text" value="{{tutid}}" name='tutid'><br>
+                    
                     <button type="submit" class=" form-control btn-success">Varify</button>
                   </form>
                   {% endif %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}{% block title %} {{user}} Login {% endblock title %}
+{% block base %}
+
+<br />
+<div class="container p-5" style="height: 100%; box-shadow: 2px 2px 14px 4px #888888;">
+  <div class="row" >
+
+    <div class=""><h3 class=" text-success m-3"><i class="fa fa-lock" ></i> Please login
+    </h3>
+      <form action="{{path}}" method="post">
+        <input
+          type="text"
+          placeholder="Username"
+          name="username"
+          class="form-control m-2"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          class="form-control m-2"
+        />
+        <input class="btn btn-outline-success m-2" type="submit" value="Login" />
+      </form>
+      <a href="{{newuser}}"> New user?</a>
+      {% if error %}
+      <div class="badge badge-danger">
+        <p class="error">
+          <strong>Error:</strong> {{ error }} 
+        </p>
+        {% endif %} {% endblock base %}
+
+      </div>
+    </div>
+  </div>
+</div>

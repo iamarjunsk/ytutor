@@ -1,0 +1,12 @@
+{% extends 'head.html' %}
+    {% block body%}
+        <h2>{{ heading }}</h2>
+        <form action='/test' method="post">
+            <input type="radio" name="gender" id="" value="true">male <br>
+            <input type="radio" name="gender" id="" value="">female
+
+            
+            <button type="submit">Submit</button>
+        </form> 
+
+    {% endblock body%}

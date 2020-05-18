@@ -1,99 +1,106 @@
 {% extends "base.html" %}{% block title %}
  Tutor Resistration  
 {% endblock title %} {% block base %}
-<centerTutor Resistration >
-    <div class=" row align-content-center align-items-center align-self-center justify-content-center">
-        <form method="POST" action="/tutor/register" enctype="multipart/form-data" class="col-sm-12 col-md-6 ">
-          
-          
-          <input type="text" class=" form-control m-2" placeholder="Name" id="name" autofocus="true" name="name" required="">
-          <input type="text" class=" form-control m-2" placeholder="Username" id="username" autofocus="true" name="username" required="">
-          <div class="form-group ">
-            <input
-              type="email"
-              class="form-control form-control m-2"
-              id="txtEmail"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              name="email"
-            />
-            <small id="emailHelp" class="form-text text-muted"
-              >We'll never share your email with anyone else.</small
-            >
-          </div>
-          <div>
-            <center><h5 class=" section-title text-success">Gender</h5></center>
-            <input type="radio" name="male" id="male" value=true> Male </input><br>
-            <input type="radio" name="male" id="female" value=false> Female </input><br>
-          </div>
 
-          <input type="password" class=" form-control m-2" placeholder="Password" id="password1" name="password1" required="">
-          <input type="text" class=" form-control m-2" placeholder="Confirm Password" id="password2" name="password2" required="">
-          <center><h5 class=" section-title text-success">Date of birth</h5></center>
-          <input type="date" class=" form-control m-2" placeholder="" id="dob" name="dob" required="">
-          <input type="number" class=" form-control m-2" placeholder="Phone Number" id="phone" name="phone" required="">
-          <input type="" class=" form-control m-2" placeholder="Qualification" id="qualification" name="qualification" required="">
-          
-          
-          <input type="number"  class=" form-control m-2" placeholder="Enter Pincode" id="pin" name="pin" required>
-          <select class="form-control m-2 " id="txtTut" required="" name="tuition"><option value="" disabled="" selected="" >Select your preferred tuition</option>
-              <option value="" disabled=""></option>
-              <option value="" disabled="">School level</option>
-              <option value="1to10">1 to 10</option>
-          
-              <option disabled=""></option>
-              <option value="" disabled="">+1 &amp; +2</option>
-              
-              <option value="science">Science</option>
-              <option value="commerce">Commerce</option>
-              <option value="humanities">Humanities</option>
-              <option value="computer_science">Computer Science</option>
-              <option disabled=""></option>
-              <option value="ielts">IELTS</option>
-              <option disabled=""></option>
-              <option value="" disabled="">Entrance</option>
-              <option value="cat">CAT</option>
-              <option value="aiims">AIIMS</option>
-              <option value="jee">JEE</option>
-              <option value="neet">NEET</option><option value="gate">GATE</option>
-              
-          </select>
-          
-
-          <div id="schOp" class="m-2 p-2  custom-checkbox form-control" style="height: auto; display: none;" >
-             <input type="checkbox" value=true  id="Maths" name="maths">Maths
-             <input type="checkbox" value=true  id="Science" name="science">Science
-             <input type="checkbox" value=true  id="Social" name="social">Social
-             <input type="checkbox" value=true  id="Computer" name="computer">Computer
-
-          </div>
-          <div id="scieOp" class="m-2 p-2  custom-checkbox form-control" style="height: auto; display: none;">
-              <input type="checkbox" value=true  id="Physics" name="physics">Physics
-              <input type="checkbox" value=true  id="Chemistry" name="chemistry">Chemistry
-              <input type="checkbox" value=true  id="Biology" name="biology">Biology
-              <input type="checkbox" value=true  id="ScMaths" name="scMaths">Maths
-
-           </div>
-          <div class=" form-control " style="height: auto;">
-              <textarea name="" id="txtExt" name="extra" cols="30" rows="10" class="form-control m-2 h-25" placeholder="Write your extra key points 
-Eg:
-Programming
-Mobile develpment
-Painting "></textarea>
-
-          </div>                <!-- <center><h5 class=" section-title text-success">Profile picture(less than 100kb)</h5></center>
-          <input class="form-control m-2 " type="file" id="" accept="image/jpeg" onchange="dp(event,'output1')">
-          <img id='output1' class=" imag w-75">
-          <center><h5 class=" section-title text-success">Aadhar picture(less than 100kb)</h5></center>
-          <input class="form-control m-2 " type="file" id="" accept="image/jpeg" onchange="dp(event,'output2')">
-          <img id='output2' class=" imag w-75"> -->
-          <center><h5 class=" section-title text-success">Any valid Id proof image related to education</h5></center>
-          <input class="form-control m-2 " type="file" id="im" name="image" accept="image/jpeg" onchange="dp(event,'output3')">
-          <!-- <img id="output3" class=" imag w-75 m-2"><br> -->
-          <input class=" form-control m-2" name="output3" id="output3" style="display:none;">
-      
-          <button type="submit" class=" form-control btn-primary">Submit</button>
-        </form>   
+  <div class=" row align-content-center align-items-center align-self-center justify-content-center p-5" style="height: 100%; box-shadow: 2px 2px 14px 4px #888888;">
+    <div class="col-12 badge badge-dark mb-4" > 
+      <h2 class=" text-center titleTExt text-light ">Tutor Resistration </h2>
+      {% if messege %}
+      <div class=" badge badge-danger"> <h4>{{messege}}</h4></div>
+      {% endif %}
+    </div>   
+    <form method="POST" action="/tutor/register" enctype="multipart/form-data" class="col-sm-12 col-md-6 ">
+      <small id="emailHelp" class="form-text  badge badge-pill badge-info text-light">We'll never share your email with anyone else.</small>
+      <input type="text" class=" form-control m-2" placeholder="Name" id="name" autofocus="true" name="name" required="">
+      <input type="text" class=" form-control m-2" placeholder="Username" id="username" autofocus="true" name="username" required="">
+      <div class="form-group ">
+        <input
+          type="email"
+          class="form-control form-control m-2"
+          id="txtEmail"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          name="email"
+        />
       </div>
-</center>
+      <div>
+        <h5 class="  badge badge-dark text-center section-title text-light ">Gender</h5> <br>
+        <input type="radio" name="male" id="male" value="true"> Male </input><br>
+        <input type="radio" name="male" id="female" value=""> Female </input><br>
+      </div>
+
+      <input type="password" class=" form-control m-2" placeholder="Password" id="password1" name="password1" required="">
+      <input type="text" class=" form-control m-2" placeholder="Confirm Password" id="password2" name="password2" required="">
+      <h5 class=" badge badge-dark text-center section-title text-light ">Date of birth</h5>
+      <input type="date" class=" form-control m-2" placeholder="" id="dob" name="dob" required=""><br>
+      <input type="number" class=" form-control m-2" placeholder="Phone Number" id="phone" name="phone" required="">
+      <input type="" class=" form-control m-2" placeholder="Qualification" id="qualification" name="qualification" required="">
+          
+          
+      <input type="number"  class=" form-control m-2" placeholder="Enter Pincode" id="pin" name="pin" required>
+      <select class="form-control m-2 " id="txtTut" required="" name="tuition"><option value="" disabled="" selected="" >Select your preferred tuition</option>
+        <option value="" disabled=""></option>
+        <option value="" disabled="">School level</option>
+        <option value="1to10">1 to 10</option>
+         
+        <option disabled=""></option>
+        <option value="" disabled="">+1 &amp; +2</option>
+              
+        <option value="science">Science</option>
+        <option value="commerce">Commerce</option>
+        <option value="humanities">Humanities</option>
+        <option value="computer_science">Computer Science</option>
+        <option disabled=""></option>
+        <option value="ielts">IELTS</option>
+        <option disabled=""></option>
+        <option value="" disabled="">Entrance</option>
+        <option value="cat">CAT</option>
+        <option value="aiims">AIIMS</option>
+        <option value="jee">JEE</option>
+        <option value="neet">NEET</option><option value="gate">GATE</option>
+              
+      </select>
+          
+
+      <div id="schOp" class="m-2 p-2  custom-checkbox form-control" style="height: auto; display: none;" >
+        <input type="checkbox" value=true  id="Maths" name="maths">Maths
+        <input type="checkbox" value=true  id="Science" name="science">Science
+        <input type="checkbox" value=true  id="Social" name="social">Social
+        <input type="checkbox" value=true  id="Computer" name="computer">Computer
+
+      </div>
+      <div id="scieOp" class="m-2 p-2  custom-checkbox form-control" style="height: auto; display: none;">
+        <input type="checkbox" value=true  id="Physics" name="physics">Physics
+        <input type="checkbox" value=true  id="Chemistry" name="chemistry">Chemistry
+        <input type="checkbox" value=true  id="Biology" name="biology">Biology
+        <input type="checkbox" value=true  id="ScMaths" name="scMaths">Maths
+
+      </div>
+      <div class=" form-control " style="height: auto;">
+        <textarea name="" id="txtExt" name="extra" cols="30" rows="10" class="form-control m-2 h-25" placeholder="Write your extra key points 
+          Eg:
+          Programming
+          Mobile develpment
+          Painting ">
+       </textarea>
+      </div>
+
+        <h5 class="  badge badge-dark text-center section-title text-light ">Any valid Id proof image related to education</h5>
+        <input class="form-control m-2 " type="file" id="im" name="image" accept="image/jpeg" onchange="dp(event,'output3')">
+        <!-- <img id="output3" class=" imag w-75 m-2"><br> -->
+        <input class=" form-control m-2" name="output3" id="output3" style="display:none;">
+      
+        <button type="submit" class=" form-control btn-primary">Submit</button>
+        <div class="row">
+          <div class="col-6 mt-4">
+            <a href="/tutor/login">Already user?</a> 
+            
+          </div>
+        </div>
+    
+      </form>  
+        
+    
+  </div>
+
 {% endblock base %}

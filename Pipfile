@@ -12,6 +12,7 @@ flask-sqlalchemy = "*"
 gunicorn = "*"
 requests = "*"
 datetime = "*"
+smtplib = "*"
 
 [requires]
 python_version = "3.8"
