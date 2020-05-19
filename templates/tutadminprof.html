@@ -4,6 +4,13 @@
         <div class=" row">
             <div class=" col-md-4 col-sm-12 text-center card mt-2 " id="dataPart">
                 <!-- <img class=" card-img w-25 rounded-circle" id="propic" src="yourstutor.png"><br> -->
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="bg-info"><h2 class="text-light">{{ message }}</h2></div>
+                        {% endfor %}    
+                    {% endif %}
+                {% endwith %}
                 <h4 class=" m-3">Name</h4><h5 id="PName">{{ tutor.fname }}</h5>
                 <h4 class=" m-3">Email</h4><h5 id="PEmail">{{tutor.email}}</h5>
                 <h4 class=" m-3">Phone</h4><h5 id="PPhone">{{tutor.phone}}</h5>

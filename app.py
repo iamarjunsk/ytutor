@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, Response, session
+from flask import Flask, render_template, url_for, request, redirect, Response, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import requests
@@ -101,9 +101,10 @@ def tutvarify():
         admin.isvarify=True
         admin.tutid=tutid
         db.session.commit()
-        messegeEmail="Welcome to YoursTutor \n Helo " + admin.faname + " your ID and password is \n " + admin.tutid + " and \n" + admin.username + " . \n Thankyou :)"
+        messegeEmail="Welcome to YoursTutor \n Helo " + admin.fname + " your ID and password is \n " + str(admin.tutid) + " and \n" + admin.username + " . \n Thankyou :)"
         server.sendmail(senderEmail,admin.email, messegeEmail )
         print("Email sended")
+        flash("Verified")
         return redirect('/admin/tutor/'+user)
 
 @app.route('/tutor/delete',methods=['GET','POST'])
