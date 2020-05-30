@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" href="../satic/favicon.ico" type="image/x-icon">
+</head>
+<body style="background-color: #2d2f39;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark row">
+        <div class="col-8 pl-6 ml-4 ">
+            <a class="navbar-brand" href="/"><img src="../static/yourstutor.png" width="60" height="60" alt=""></a>
+            
+        </div>
+        <button class="navbar-toggler collapsed mr-3" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="col-4">
+            <div class="row" >
+                <!-- <div class="col-1 p-4">
+                    
+                </div> -->
+                <div class="col-3">
+                    <div class="navbar-collapse collapse m-4 " id="navbarColor01">
+                      <ul class="navbar-nav mr-auto">
+                        
+                        <li class="nav-item">
+                          <a class="nav-link" href="/admin/tutors"><button class="btn btn-outline-primary m-2" type="button">Tutors</button></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/admin/students"><button class="btn btn-outline-primary m-2" type="button">Students</button></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/admin/marketers"><button class="btn btn-outline-primary m-2" type="button">Marketers</button></a>
+                        </li>
+                        
+                      </ul>
+                     
+                    </div>
+
+                </div>
+            </div>
+        </div>
+      
+    </nav>
+<div class="row m-3 text-light">
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-primary ">
+            <div class=" card-header text-center">Today's Registrations</div>
+            <div class=" card-body row ">
+                <div class=" col-6 bg-primary card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ today.tutor }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-primary card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ today.student }}
+                    </h6>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-primary ">
+            <div class=" card-header text-center">Total Registrations</div>
+            <div class=" card-body row ">
+                <div class=" col-6 bg-primary card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ total.tutor }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-primary card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ total.student }}
+                    </h6>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-primary ">
+            <div class=" card-header text-center">Marketers</div>
+            <div class=" card-body row ">
+                <div class=" col-6 bg-primary card ">
+                    <h6 class="  text-center  mt-1">Today</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ today.marketer }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-primary card">
+                    <h6 class="  text-center  mt-1">Total</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ total.marketer }}
+                    </h6>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row m-3">
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Thiruvananthapuram</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl1_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl1_s }}
+                    </h6>
+                </div>
+
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl1_m }}
+                    </h6>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Kollam</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl2_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl2_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl2_m }}
+                    </h6>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Pathanamthitta</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl3_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl3_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl3_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Alappuzha</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl4_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl4_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl4_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Kottayam</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl5_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl5_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl5_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Idukki</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl6_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl6_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl6_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Ernakulam</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl7_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl7_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl7_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Thrissur</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl8_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl8_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl8_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Palakkad</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl9_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl9_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl9_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Malappuram</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl10_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl10_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl10_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Kozhikode</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl11_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl11_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl11_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Wayanad</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl12_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl12_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl12_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Kannur</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl13_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl13_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl13_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 p-2">
+        <div class="card bg-dark text-white">
+            <div class=" card-header text-center">Kasargod</div>
+            <div class=" card-body row text-info">
+                <div class=" col-6 bg-dark card ">
+                    <h6 class="  text-center  mt-1">Tutors</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl14_t }}
+                    </h6>
+
+                </div>
+                <div class=" col-6 bg-dark card">
+                    <h6 class="  text-center  mt-1">Students</h6>
+                    <h6 class="  text-center  mt-1">
+                        {{ district.kl14_s }}
+                    </h6>
+                </div>
+                <div class=" col-12 bg-dark card">
+                    <h6 class="  text-center  mt-1">
+                        Marketers : {{ district.kl14_m }}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

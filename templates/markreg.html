@@ -1,15 +1,12 @@
 {% extends "base.html" %}{% block title %}
- Student Resistration  
+ Marketer Resistration  
 {% endblock title %} {% block base %}
 
   <div class=" row align-content-center align-items-center align-self-center justify-content-center p-5" style="height: 100%; box-shadow: 2px 2px 14px 4px #888888;">
     <div class="col-12 badge badge-dark mb-4" > 
-      <h2 class=" text-center titleTExt text-light ">Student Resistration </h2>
-      {% if messege %}
-      <div class=" badge badge-danger"> <h4>{{messege}}</h4></div>
-      {% endif %}
+      <h4 class=" text-center titleTExt text-light ">Marketer Resistration </h4>
     </div>   
-    <form method="POST" action="/student/register" enctype="multipart/form-data" class="col-sm-12 col-md-6 ">
+    <form method="POST" action="/marketer/register" enctype="multipart/form-data" class="col-sm-12 col-md-6 ">
     
       <small id="emailHelp" class="form-text  badge badge-pill badge-info text-light">We'll never share your email with anyone else.</small>
       <input type="text" class=" form-control m-2" placeholder="Name" id="name" autofocus="true" name="name" required>
@@ -36,25 +33,27 @@
       <input type="date" class=" form-control m-2" placeholder="" id="dob" name="dob" required=""><br>
       <input type="number" class=" form-control m-2" placeholder="Phone Number" id="phone" name="phone" required>   
       <input type="number"  class=" form-control m-2" placeholder="Enter Pincode" id="pin" name="pin" required>
-      <input type="text"  class=" form-control m-2" placeholder="Parent name" id="parent" name="parent" required>
-      <input type="text"  class=" form-control m-2" placeholder="Enter Subjests you need tuition" id="tuition" name="tuition" required>
-  
-
+      <input type="text" name="qualification" placeholder="Qualification" class=" form-control m-2" required>
         <h5 class="  badge badge-dark text-center section-title text-light ">Any valid Id proof image related to education</h5>
         <input class="form-control m-2 " type="file" id="im" name="image" accept="image/jpeg" onchange="dp(event,'output3')">
-        <!-- <img id="output3" class=" imag w-75 m-2"><br> -->
         <input class=" form-control m-2" name="output3" id="output3" style="display:none;">
       
         <button type="submit" class=" form-control btn-primary">Submit</button>
         <div class="row">
           <div class="col-6 mt-4">
-            <a href="/student/login">Already user?</a> 
+            <a href="/marketer/login">Already user?</a> 
             
           </div>
         </div>
     
       </form>  
-        
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="bg-danger badge m-1"><h4 class="text-light">{{ message }}</h4></div>
+            {% endfor %}    
+        {% endif %}
+      {% endwith %}  
     
   </div>
 

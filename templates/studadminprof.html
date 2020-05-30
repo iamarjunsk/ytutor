@@ -11,19 +11,19 @@
                         {% endfor %}    
                     {% endif %}
                 {% endwith %}
-                {% if tutor.tutid%}
-                    <div class="bg-info text-light"><h4 class=" m-3 ">Tutor id</h4><h5 id="PName">{{ tutor.tutid }}</h5></div>
+                {% if stud.studid%}
+                    <div class="bg-info text-light"><h4 class=" m-3 ">Tutor id</h4><h5 id="PName">{{ stud.studid }}</h5></div>
                 {% endif %}
-                <h4 class=" m-3">Name</h4><h5 id="PName">{{ tutor.fname }}</h5>
-                <h4 class=" m-3">Username</h4><h5 id="PName">{{ tutor.username }}</h5>
-                <h4 class=" m-3">Email</h4><h5 id="PEmail">{{tutor.email}}</h5>
-                <h4 class=" m-3">Phone</h4><h5 id="PPhone">{{tutor.phone}}</h5>
-                <h4 class=" m-3">District</h4><h5 id="PDist">{{tutor.district}}</h5>
-                <h4 class=" m-3">Taluk</h4><h5 id="PCity">{{tutor.taluk}}</h5>
-                <h4 class=" m-3">Village</h4><h5 id="PTown">{{tutor.village}}</h5>
-                <h4 class=" m-3">Qualification</h4><h5 id="PQuali">{{tutor.qualification}}</h5>
-                <h4 class=" m-3">Prefered Tuision</h4><h5 id="PTuit">{{tutor.tuition}}</h5>
-                <h4 class=" m-3">Date of Birth</h4><h5 id="PDob">{{tutor.dob.date()}}</h5>
+                <h4 class=" m-3">Name</h4><h5 id="PName">{{ stud.fname }}</h5>
+                <h4 class=" m-3">Username</h4><h5 id="PName">{{ stud.username }}</h5>
+                <h4 class=" m-3">Tutor</h4><h5 id="PName">{{ stud.tutor }}</h5>
+                <h4 class=" m-3">Email</h4><h5 id="PEmail">{{stud.email}}</h5>
+                <h4 class=" m-3">Phone</h4><h5 id="PPhone">{{stud.phone}}</h5>
+                <h4 class=" m-3">District</h4><h5 id="PDist">{{stud.district}}</h5>
+                <h4 class=" m-3">Taluk</h4><h5 id="PCity">{{stud.taluk}}</h5>
+                <h4 class=" m-3">Village</h4><h5 id="PTown">{{stud.village}}</h5>
+                <h4 class=" m-3">Prefered Tuision</h4><h5 id="PTuit">{{stud.tuition}}</h5>
+                <h4 class=" m-3">Date of Birth</h4><h5 id="PDob">{{stud.dob.date()}}</h5>
                 
             </div>
             <div class=" col-md-8 col-sm-12 text-center card  mt-2">
@@ -40,20 +40,19 @@
                    
                     
                  <h4>Identity card</h4>
-                <img id="qual" class=" card-img m-2 h-50 w-100" src={{tutor.image}}>
-                    
+                <img id="qual" class=" card-img m-2 h-50 w-100" src={{stud.image}}>
+                    {#<script> 
+                        var nam=localStorage.getItem("user");</script>#}
                         <div class="w-50 align-self-center mt-4">
-                        {% if not tutor.isvarify%}
-                <form method="POST" action="/tutor/verify" >
-                    <input type="text" value="{{tutor.username}}" name='username' style='display:none'><br>
-                    Tutor id is will be assigned
-                    <input type="text" value="{{tutid}}" name='tutid'><br>
-                    
-                    <button type="submit" class=" form-control btn-success">Varify</button>
-                  </form>
+                        {% if not stud.tutor %}
+                <form method="POST" action="/student/assign" >
+                    <input class=" form-control" placeholder="Enter tutor's username here" type="text" name='tutname'><br>
+                    <input type="text" value="{{stud.username}}" name='username' style='display:none'><br>
+                    <button type="submit" class=" form-control btn-success">Assign</button>
+                </form>
                   {% endif %}
                   <form method="POST" action="/tutor/delete" >
-                    <input type="text" value="{{tutor.username}}" name='username' style='display:none'><br>
+                    <input type="text" value="{{stud.username}}" name='username' style='display:none'><br>
 
                     <button type="submit" class=" form-control btn-danger">Delete</button>
                   </form>

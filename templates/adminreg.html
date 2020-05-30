@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin log</title>
+    <title>Register Admin</title>
     <link rel="stylesheet" href="../static/css/bootstrap.min.css">
     <script src="../static/js/jquery-1.11.1.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
@@ -12,10 +12,13 @@
 </head>
 <body>
     <div style="display: flex; height: 100vh; justify-content: center; align-items: center; flex-direction: column;">
-        <h3 class=" text-capitalize text-info m-2"> Admin login </h3>
-        <form action="/admin/login" method="post" class=" m-2 center-block text-info" style="display: flex; flex-direction: column;">
+        <h3 class=" text-capitalize text-info m-2"> Admin Registration </h3>
+        <form action="/addadmin/" method="post" class=" m-2 center-block text-info" style="display: flex; flex-direction: column;">
+            <input type="text" name="name" placeholder="Enter Fullname" class=" form-control m-2" id="">
             <input type="text" name="username" placeholder="Enter Username" class=" form-control m-2" id="">
-            <input type="password" name="password" placeholder="Enter Password" class=" form-control m-2" id="">
+            <input type="password" name="password1" placeholder="Enter Password" class=" form-control m-2" id="">
+            <input type="password" name="password2" placeholder="Re Password" class=" form-control m-2" id="">
+            <input type="number" name="pin" placeholder="Enter confirm pin" class=" form-control m-2" id="">
             <button type="submit" class="btn btn-success m-2" style="align-self: center;">Submit</button>
         </form>
         {% with messages = get_flashed_messages() %}
