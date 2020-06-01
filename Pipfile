@@ -14,6 +14,7 @@ requests = "*"
 datetime = "*"
 flask-sqlalchemy = "*"
 psycopg2-binary = "*"
+pdfkit = "*"
 
 [requires]
 python_version = "3.8"

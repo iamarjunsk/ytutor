@@ -12,7 +12,7 @@ import smtplib
 app=Flask(__name__)
 
 ENV='dev'
-if ENV == 'prod':
+if ENV == 'dev':
     app.debug=True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/yt'
 else:
@@ -46,9 +46,10 @@ class Tutor(db.Model):
     dob = db.Column(db.DateTime, nullable = False)
     phone = db.Column(db.String(20), nullable = False)
     qualification = db.Column(db.String(50), nullable = False)
+    state = db.Column(db.String(30), nullable = False)
     district = db.Column(db.String(30), nullable = False)
-    taluk = db.Column(db.String(30), nullable = True)
-    village = db.Column(db.String(30), nullable = True)
+    block = db.Column(db.String(30), nullable = True)
+    location = db.Column(db.String(30), nullable = True)
     tuition = db.Column(db.String(30), nullable = True)
     maths = db.Column(db.Boolean, nullable = True, default = False)
     science = db.Column(db.Boolean, nullable = True, default = False)
@@ -79,9 +80,10 @@ class Customer(db.Model):
     password = db.Column(db.String(300), nullable=False)
     dob = db.Column(db.DateTime, nullable=False)
     phone = db.Column(db.String(20), nullable=False)
+    state = db.Column(db.String(30), nullable = False)
     district = db.Column(db.String(30), nullable=False)
-    taluk = db.Column(db.String(30), nullable=False)
-    village = db.Column(db.String(30), nullable=False)
+    block = db.Column(db.String(30), nullable=False)
+    location = db.Column(db.String(30), nullable=False)
     tuition = db.Column(db.String(30), nullable=False)
     image = db.Column(db.String(800000), nullable=False, default='False')
     tutor = db.Column(db.String(30),nullable=True)
@@ -94,16 +96,17 @@ class Customer(db.Model):
 
 class Marketer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    Markid = db.Column(db.Integer, nullable=True)
+    markid = db.Column(db.Integer, nullable=True)
     email = db.Column(db.String(30), unique=True, nullable=False)
     fname = db.Column(db.String(30), nullable=False)
     username = db.Column(db.String(30), nullable=False)
     password = db.Column(db.String(300), nullable=False)
     dob = db.Column(db.DateTime, nullable=False)
     phone = db.Column(db.String(20), nullable=False)
+    state = db.Column(db.String(30), nullable = False)
     district = db.Column(db.String(30), nullable=False)
-    taluk = db.Column(db.String(30), nullable=False)
-    village = db.Column(db.String(30), nullable=False)
+    block = db.Column(db.String(30), nullable=False)
+    location = db.Column(db.String(30), nullable=False)
     image = db.Column(db.String(800000), nullable=False, default='False')
     qualification = db.Column(db.String(50), nullable = False)
     isvarify = db.Column(db.Boolean, nullable = True, default = False)
@@ -115,7 +118,8 @@ class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(30), nullable=False)
     username = db.Column(db.String(30), nullable=False)
-    password = db.Column(db.String(300), nullable=False)    
+    password = db.Column(db.String(300), nullable=False)
+    issuperadmin = db.Column(db.Boolean, nullable = True, default = False)   
 
 @app.route('/tutor/verify',methods=['GET','POST'])
 def tutvarify():
@@ -131,6 +135,21 @@ def tutvarify():
         print("Email sended")
         flash("Verified")
         return redirect('/admin/tutor/'+user)
+
+@app.route('/marketer/verify',methods=['GET','POST'])
+def markvarify():
+    if request.method == "POST" :
+        user=request.form.get("username")
+        markid=request.form.get("markid")
+        admin = Marketer.query.filter_by(username=user).first()
+        admin.isvarify=True
+        admin.markid=markid
+        db.session.commit()
+        messegeEmail="Welcome to YoursTutor \nHelo " + admin.fname + " your ID and Username is \n " + str(admin.markid) + " and " + admin.username + " . \nThankyou :)"
+        server.sendmail(senderEmail,admin.email, messegeEmail )
+        print("Email sended")
+        flash("Verified")
+        return redirect('/admin/marketer/'+user)
 
 @app.route('/student/assign',methods=['POST'])
 def tutassign():
@@ -230,11 +249,12 @@ def tutreg():
             location=locn[0]["PostOffice"][0]["Name"]
             block=locn[0]["PostOffice"][0]["Block"]
             district=locn[0]["PostOffice"][0]["District"]
+            state=locn[0]["PostOffice"][0]["State"]
         except:
             return render_template('tutReg.html', messege="PIN Code Invalid", tutor='active')
         if(password1 == password2):
             password = generate_password_hash(password1, "sha256")
-            user=Tutor(fname=name, username=username, email=email, password=password, dob=dob, date=todaydate, phone=phone, qualification=qualification, district=district, taluk=block, village=location, tuition=tuition, maths=maths, science=science, social=social, computer=computer, physics=physics, chemistry=chemistry, biology=biology, scmaths=scmaths, extra=extra, image=image, ismale=ismale )            
+            user=Tutor(fname=name, username=username, email=email, password=password, dob=dob, date=todaydate, phone=phone, qualification=qualification, state=state, district=district, block=block, location=location, tuition=tuition, maths=maths, science=science, social=social, computer=computer, physics=physics, chemistry=chemistry, biology=biology, scmaths=scmaths, extra=extra, image=image, ismale=ismale )            
             db.session.add(user)
             db.session.commit()
             print('commited')
@@ -274,13 +294,14 @@ def studreg():
             location=locn[0]["PostOffice"][0]["Name"]
             block=locn[0]["PostOffice"][0]["Block"]
             district=locn[0]["PostOffice"][0]["District"]
+            state=locn[0]["PostOffice"][0]["State"]
         except:
             return render_template('studReg.html', messege="PIN Code Invalid", student='active')
         count=Customer.query.count()
         studid=600001+count
         if(password1 == password2):
             password = generate_password_hash(password1, "sha256")
-            user=Customer(fname=name, username=username, studid=studid, email=email, password=password, dob=dob, date=todaydate, phone=phone, district=district, taluk=block, village=location, tuition=tuition, image=image, ismale=ismale, parent=parent )            
+            user=Customer(fname=name, username=username, studid=studid, email=email, password=password, dob=dob, date=todaydate, phone=phone,state=state, district=district, block=block, location=location, tuition=tuition, image=image, ismale=ismale, parent=parent )            
             db.session.add(user)
             db.session.commit()
             print('commited')
@@ -321,12 +342,13 @@ def markreg():
             location=locn[0]["PostOffice"][0]["Name"]
             block=locn[0]["PostOffice"][0]["Block"]
             district=locn[0]["PostOffice"][0]["District"]
+            state=locn[0]["PostOffice"][0]["State"]
         except:
             flash('Pincode invalid')
             return redirect('/marketer/register')
         if(password1 == password2):
             password = generate_password_hash(password1, "sha256")
-            user=Marketer(fname=name, username=username, email=email, password=password, dob=dob, date=todaydate, phone=phone, district=district, taluk=block, village=location, image=image, ismale=ismale, qualification=qualification)            
+            user=Marketer(fname=name, username=username, email=email, password=password, dob=dob, date=todaydate, phone=phone, state=state, district=district, block=block, location=location, image=image, ismale=ismale, qualification=qualification)            
             db.session.add(user)
             db.session.commit()
             print('commited')
@@ -611,17 +633,19 @@ def tutsh():
         sh=request.form.get("search")
         course=Tutor.query.filter(Tutor.tuition.contains(sh)).all()
         names=Tutor.query.filter(Tutor.fname.contains(sh)).all()
-        village=Tutor.query.filter(Tutor.village.contains(sh)).all()  
-        taluk=Tutor.query.filter(Tutor.taluk.contains(sh)).all()  
-        district=Tutor.query.filter(Tutor.district.contains(sh)).all()  
+        location=Tutor.query.filter(Tutor.location.contains(sh)).all()  
+        block=Tutor.query.filter(Tutor.block.contains(sh)).all()  
+        district=Tutor.query.filter(Tutor.district.contains(sh)).all()
+        state=Tutor.query.filter(Tutor.state.contains(sh)).all()  
         username=Tutor.query.filter(Tutor.username.contains(sh)).all()
         qualific=Tutor.query.filter(Tutor.qualification.contains(sh)).all()
         search={
             "course":course,
             "names":names,
-            "village":village,
-            "taluk":taluk,
+            "location":location,
+            "block":block,
             "district":district,
+            "state":state,
             "username":username,
             "qualific":qualific
         }
@@ -633,16 +657,18 @@ def studsh():
         sh=request.form.get("search")
         course=Customer.query.filter(Customer.tuition.contains(sh)).all()
         names=Customer.query.filter(Customer.fname.contains(sh)).all()
-        village=Customer.query.filter(Customer.village.contains(sh)).all()  
-        taluk=Customer.query.filter(Customer.taluk.contains(sh)).all()  
-        district=Customer.query.filter(Customer.district.contains(sh)).all()  
+        location=Tutor.query.filter(Tutor.location.contains(sh)).all()  
+        block=Tutor.query.filter(Tutor.block.contains(sh)).all()  
+        district=Tutor.query.filter(Tutor.district.contains(sh)).all()
+        state=Tutor.query.filter(Tutor.state.contains(sh)).all()   
         username=Customer.query.filter(Customer.username.contains(sh)).all()
         search={
             "course":course,
             "names":names,
-            "village":village,
-            "taluk":taluk,
+            "location":location,
+            "block":block,
             "district":district,
+            "state":state,
             "username":username
         }
         return render_template("admnon.html", display="none", search=search,student=True)
@@ -652,16 +678,18 @@ def marksh():
     if request.method == "POST":
         sh=request.form.get("search")
         names=Marketer.query.filter(Marketer.fname.contains(sh)).all()
-        village=Marketer.query.filter(Marketer.village.contains(sh)).all()  
-        taluk=Marketer.query.filter(Marketer.taluk.contains(sh)).all()  
-        district=Marketer.query.filter(Marketer.district.contains(sh)).all()  
+        location=Tutor.query.filter(Tutor.location.contains(sh)).all()  
+        block=Tutor.query.filter(Tutor.block.contains(sh)).all()  
+        district=Tutor.query.filter(Tutor.district.contains(sh)).all()
+        state=Tutor.query.filter(Tutor.state.contains(sh)).all()   
         username=Marketer.query.filter(Marketer.username.contains(sh)).all()
         qualific=Marketer.query.filter(Marketer.qualification.contains(sh)).all()
         search={
             "names":names,
-            "village":village,
-            "taluk":taluk,
+            "location":location,
+            "block":block,
             "district":district,
+            "state":state,
             "username":username,
             "qualific":qualific
         }
@@ -770,10 +798,18 @@ def addadmin():
             return redirect('/addadmin')        
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
-        pin = request.form.get("pin")
-        if(password1 == password2 and pin=="5000"):
+        pin = int(request.form.get("pin"))
+        if(pin==8000):
+            issuperadmin=True
+            isvalid=True
+        elif(pin==5000):
+            issuperadmin=False
+            isvalid=True
+        else:
+            isvalid=False
+        if(password1 == password2 and isvalid):
             password = generate_password_hash(password1, "sha256")
-            user=Admin(fname=name, username=username,password=password)
+            user=Admin(fname=name, username=username,password=password,issuperadmin=issuperadmin)
             db.session.add(user)
             db.session.commit()
             print('commited')

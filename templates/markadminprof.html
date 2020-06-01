@@ -11,16 +11,17 @@
                         {% endfor %}    
                     {% endif %}
                 {% endwith %}
-                {% if mark.tutid%}
+                {% if mark.markid%}
                     <div class="bg-info text-light"><h4 class=" m-3 ">Marketer id</h4><h5 id="PName">{{ mark.markid }}</h5></div>
                 {% endif %}
                 <h4 class=" m-3">Name</h4><h5 id="PName">{{ mark.fname }}</h5>
                 <h4 class=" m-3">Username</h4><h5 id="PName">{{ mark.username }}</h5>
                 <h4 class=" m-3">Email</h4><h5 id="PEmail">{{mark.email}}</h5>
                 <h4 class=" m-3">Phone</h4><h5 id="PPhone">{{mark.phone}}</h5>
+                <h4 class=" m-3">State</h4><h5 id="PState">{{mark.state}}</h5>
                 <h4 class=" m-3">District</h4><h5 id="PDist">{{mark.district}}</h5>
-                <h4 class=" m-3">Taluk</h4><h5 id="PCity">{{mark.taluk}}</h5>
-                <h4 class=" m-3">Village</h4><h5 id="PTown">{{mark.village}}</h5>
+                <h4 class=" m-3">Block</h4><h5 id="PCity">{{mark.block}</h5>
+                <h4 class=" m-3">Location</h4><h5 id="PTown">{{mark.location}}</h5>
                 <h4 class=" m-3">Qualification</h4><h5 id="PQuali">{{mark.qualification}}</h5>
                 <h4 class=" m-3">Date of Birth</h4><h5 id="PDob">{{mark.dob.date()}}</h5>
                 

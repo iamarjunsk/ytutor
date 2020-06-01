@@ -33,9 +33,10 @@
                     <h5 class="card-text">{{ i.phone }}</h5>
                     <h5 class="card-text">{% if i.ismale %}
                         Male {% else %} Female {% endif %}</h5>
-                        {# <h5 class="card-text">{{ i.district }}</h5> #}
-                        <h5 class="card-text">{{ i.taluk }}</h5>
-                    <h5 class="card-text">{{ i.village }}</h5>
+                    <h5 class="card-text">{{ i.state }}</h5>
+                    <h5 class="card-text">{{ i.district }}</h5> 
+                    <h5 class="card-text">{{ i.block }}</h5>
+                    <h5 class="card-text">{{ i.location }}</h5>
                     <h5 class="card-text">{{ i.tuition }}</h5>
                     {% if tutor %}
                     <a class="btn btn-primary" href="/admin/tutor/{{ i.username }}">View</a>
@@ -79,7 +80,8 @@
                 <h5 class="card-text">{{ name.phone }}</h5>
                 <h5 class="card-text">{% if name.ismale %}
                 Male {% else %} Female {% endif %}</h5>
-                {# <h5 class="card-text">{{ name.district }}</h5> #}
+                <h5 class="card-text">{{ name.state }}</h5>
+                <h5 class="card-text">{{ name.district }}</h5>
                 <h5 class="card-text">{{ name.taluk }}</h5>
                 <h5 class="card-text">{{ name.village }}</h5>
                 <h5 class="card-text">{{ name.tuition }}</h5>
@@ -91,6 +93,46 @@
                 {% endif %}
                 {% if marketer %}
                     <a class="btn btn-primary" href="/admin/marketer/{{ name.username }}">View</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+<div class=" row justify-content-center">
+    {% if search.state %}
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bystate" aria-expanded="false" aria-controls="collapseExample">
+            Search result by State
+        </button> 
+    </p>
+    <div class="collapse" id="bystate">
+        <h4>Search result by State</h4>
+        {% for dist in search.state %}
+        <div class="card bg-dark text-light m-2 ">
+            <div class="card-header w-100 ">
+                {{dist.fname}}
+            </div>
+            <div class="card-body">
+                <h5 class=" card-text">{{ dist.username }}</h5>
+                <h5 class="card-text">{{ dist.email }}</h5>
+                <h5 class="card-text">{{ dist.phone }}</h5>
+                <h5 class="card-text">{% if dist.ismale %}
+                Male {% else %} Female {% endif %}</h5>
+                <h5 class="card-text">{{ dist.state }}</h5>
+                <h5 class="card-text">{{ dist.district }}</h5>
+                <h5 class="card-text">{{ dist.taluk }}</h5>
+                <h5 class="card-text">{{ dist.village }}</h5>
+                <h5 class="card-text">{{ dist.tuition }}</h5>
+                {% if tutor %}
+                    <a class="btn btn-primary" href="/admin/tutor/{{ dist.username }}">View</a>
+                {% endif %}
+                {% if student %}
+                    <a class="btn btn-primary" href="/admin/student/{{ dist.username }}">View</a>
+                {% endif %}
+                {% if marketer %}
+                    <a class="btn btn-primary" href="/admin/marketer/{{ dist.username }}">View</a>
                 {% endif %}
             </div>
         </div>
@@ -119,7 +161,8 @@
                 <h5 class="card-text">{{ dist.phone }}</h5>
                 <h5 class="card-text">{% if dist.ismale %}
                 Male {% else %} Female {% endif %}</h5>
-                {# <h5 class="card-text">{{ dist.district }}</h5> #}
+                <h5 class="card-text">{{ dist.state }}</h5>
+                <h5 class="card-text">{{ dist.district }}</h5>
                 <h5 class="card-text">{{ dist.taluk }}</h5>
                 <h5 class="card-text">{{ dist.village }}</h5>
                 <h5 class="card-text">{{ dist.tuition }}</h5>
@@ -140,37 +183,38 @@
 </div>
 
 <div class=" row justify-content-center">
-    {% if search.taluk %}
+    {% if search.block %}
     <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bytal" aria-expanded="false" aria-controls="collapseExample">
-            Search result by Taluk
+            Search result by Block
         </button> 
     </p>
     <div class="collapse" id="bytal">
-        <h4>Search result by Taluk</h4>
-        {% for tal in search.taluk %}
+        <h4>Search result by Block</h4>
+        {% for bl in search.block %}
         <div class="card bg-dark text-light m-2 ">
             <div class="card-header w-100 ">
-                {{tal.fname}}
+                {{bl.fname}}
             </div>
             <div class="card-body">
-                <h5 class=" card-text">{{ tal.username }}</h5>
-                <h5 class="card-text">{{ tal.email }}</h5>
-                <h5 class="card-text">{{ tal.phone }}</h5>
-                <h5 class="card-text">{% if tal.ismale %}
+                <h5 class=" card-text">{{ bl.username }}</h5>
+                <h5 class="card-text">{{ bl.email }}</h5>
+                <h5 class="card-text">{{ bl.phone }}</h5>
+                <h5 class="card-text">{% if bl.ismale %}
                 Male {% else %} Female {% endif %}</h5>
-                {# <h5 class="card-text">{{ tal.district }}</h5> #}
-                <h5 class="card-text">{{ tal.taluk }}</h5>
-                <h5 class="card-text">{{ tal.village }}</h5>
-                <h5 class="card-text">{{ tal.tuition }}</h5>
+                <h5 class="card-text">{{ bl.state }}</h5>
+                <h5 class="card-text">{{ bl.district }}</h5>
+                <h5 class="card-text">{{ bl.taluk }}</h5>
+                <h5 class="card-text">{{ bl.village }}</h5>
+                <h5 class="card-text">{{ bl.tuition }}</h5>
                 {% if tutor %}
-                    <a class="btn btn-primary" href="/admin/tutor/{{ tal.username }}">View</a>
+                    <a class="btn btn-primary" href="/admin/tutor/{{ bl.username }}">View</a>
                 {% endif %}
                 {% if student %}
-                    <a class="btn btn-primary" href="/admin/student/{{ tal.username }}">View</a>
+                    <a class="btn btn-primary" href="/admin/student/{{ bl.username }}">View</a>
                 {% endif %}
                 {% if marketer %}
-                    <a class="btn btn-primary" href="/admin/marketer/{{ tal.username }}">View</a>
+                    <a class="btn btn-primary" href="/admin/marketer/{{ bl.username }}">View</a>
                 {% endif %}
             </div>
         </div>
@@ -180,15 +224,15 @@
 </div>
 
 <div class=" row justify-content-center">
-    {% if search.village %}
+    {% if search.location %}
     <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#byvil" aria-expanded="false" aria-controls="collapseExample">
-            Search result by Villege
+            Search result by Location
         </button> 
     </p>
     <div class="collapse" id="byvil">
-        <h4>Search result by Villege</h4>
-        {% for vil in search.village %}
+        <h4>Search result by Location</h4>
+        {% for vil in search.location %}
         <div class="card bg-dark text-light m-2 ">
             <div class="card-header w-100 ">
                 {{vil.fname}}
@@ -199,7 +243,8 @@
                 <h5 class="card-text">{{ vil.phone }}</h5>
                 <h5 class="card-text">{% if vil.ismale %}
                 Male {% else %} Female {% endif %}</h5>
-                {# <h5 class="card-text">{{ vil.district }}</h5> #}
+                <h5 class="card-text">{{ vil.state }}</h5>
+                <h5 class="card-text">{{ vil.district }}</h5>
                 <h5 class="card-text">{{ vil.taluk }}</h5>
                 <h5 class="card-text">{{ vil.village }}</h5>
                 <h5 class="card-text">{{ vil.tuition }}</h5>
@@ -221,11 +266,11 @@
 <div class=" row justify-content-center">
     {% if search.course %}
     <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#byvil" aria-expanded="false" aria-controls="collapseExample">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#bycourse" aria-expanded="false" aria-controls="collapseExample">
             Search result by Course
         </button> 
     </p>
-    <div class="collapse" id="byvil">
+    <div class="collapse" id="bycourse">
         <h4>Search result by Course</h4>
         {% for vil in search.course %}
         <div class="card bg-dark text-light m-2 ">
@@ -238,7 +283,8 @@
                 <h5 class="card-text">{{ vil.phone }}</h5>
                 <h5 class="card-text">{% if vil.ismale %}
                 Male {% else %} Female {% endif %}</h5>
-                {# <h5 class="card-text">{{ vil.district }}</h5> #}
+                <h5 class="card-text">{{ vil.state }}</h5>
+                <h5 class="card-text">{{ vil.district }}</h5>
                 <h5 class="card-text">{{ vil.taluk }}</h5>
                 <h5 class="card-text">{{ vil.village }}</h5>
                 <h5 class="card-text">{{ vil.tuition }}</h5>
