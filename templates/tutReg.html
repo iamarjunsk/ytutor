@@ -5,9 +5,13 @@
   <div class=" row align-content-center align-items-center align-self-center justify-content-center p-5" style="height: 100%; box-shadow: 2px 2px 14px 4px #888888;">
     <div class="col-12 badge badge-dark mb-4" > 
       <h2 class=" text-center titleTExt text-light ">Tutor Resistration </h2>
-      {% if messege %}
-      <div class=" badge badge-danger"> <h4>{{messege}}</h4></div>
-      {% endif %}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="bg-danger badge m-1"><h4 class="text-light">{{ message }}</h4></div>
+            {% endfor %}    
+        {% endif %}
+      {% endwith %} 
     </div>   
     <form method="POST" action="/tutor/register" enctype="multipart/form-data" class="col-sm-12 col-md-6 ">
       <small id="emailHelp" class="form-text  badge badge-pill badge-info text-light">We'll never share your email with anyone else.</small>

@@ -1,18 +1,24 @@
 {% extends 'head.html' %}
-    {% block body%}
+    {% block title %}
+        <title>{{stud.fname}}</title>
+    {% endblock title %}
+    {% block body%}<title>stud.name</title>
         
         <div class=" row">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    <div class="col-12 bg-white m-2 p-2" > 
+                        {% for message in messages %}
+                            <div class="bg-danger"><h2 class="text-light">{{ message }}</h2></div>
+                        {% endfor %}    
+                    </div>
+            {% endif %}
+            {% endwith %}
             <div class=" col-md-4 col-sm-12 text-center card mt-2 " id="dataPart">
                 <!-- <img class=" card-img w-25 rounded-circle" id="propic" src="yourstutor.png"><br> -->
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="bg-info"><h2 class="text-light">{{ message }}</h2></div>
-                        {% endfor %}    
-                    {% endif %}
-                {% endwith %}
+                
                 {% if stud.studid%}
-                    <div class="bg-info text-light"><h4 class=" m-3 ">Tutor id</h4><h5 id="PName">{{ stud.studid }}</h5></div>
+                    <div class="bg-info text-light"><h4 class=" m-3 ">Student id</h4><h5 id="PName">{{ stud.studid }}</h5></div>
                 {% endif %}
                 <h4 class=" m-3">Name</h4><h5 id="PName">{{ stud.fname }}</h5>
                 <h4 class=" m-3">Username</h4><h5 id="PName">{{ stud.username }}</h5>
@@ -29,14 +35,7 @@
             </div>
             <div class=" col-md-8 col-sm-12 text-center card  mt-2">
                 <div class=" row p-4">
-                    <!-- <div class=" col-md-5 col-sm-5 card bg-success m-3" id="monGet">
-                        <h4 class="card-title text-light">Total Get</h4><h2 id="monGetData" class="card_data text-center text-white"></h2>
-                            
-                        </div>
-                        <div class=" col-md-5 col-sm-5 card bg-warning m-3" id="monPay">
-                        <h4 class="card_title text-light">Pay</h4><h2 id="monPayData" class="card_data text-center text-white h-50"></h2>
-                            
-                        </div> -->
+                    
                 </div>
                    
                     

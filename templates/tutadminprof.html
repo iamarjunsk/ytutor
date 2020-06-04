@@ -1,18 +1,57 @@
 {% extends 'head.html' %}
+{% block title %}
+    <title>{{tutor.fname}}</title>
+{% endblock title %}
     {% block body %}
         
         <div class=" row">
-            <div class=" col-md-4 col-sm-12 text-center card mt-2 " id="dataPart">
+            <div class=" col-md-6 col-sm-12 text-center card mt-2 " id="dataPart">
                 <!-- <img class=" card-img w-25 rounded-circle" id="propic" src="yourstutor.png"><br> -->
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
-                            <div class="bg-info"><h2 class="text-light">{{ message }}</h2></div>
+                            <div class="bg-info m-3" ><h2 class="text-light">{{ message }}</h2></div>
                         {% endfor %}    
                     {% endif %}
                 {% endwith %}
                 {% if tutor.tutid%}
-                    <div class="bg-info text-light"><h4 class=" m-3 ">Tutor id</h4><h5 id="PName">{{ tutor.tutid }}</h5></div>
+                    <div class="bg-secondary text-light"><h4 class=" m-3 ">Tutor id</h4><h5 id="PName">{{ tutor.tutid }}</h5></div>
+                {% endif %}
+                {% if studs %}
+                <div class=" row "></div>
+                    {% for stud in studs %}
+                        <div class="col-sm-12 col-md-8">
+                            <div class="card m-3 bg-primary text-light">
+                                <div class=" card-header">
+                                    {{stud.fname}}
+                                </div>
+                                <div class=" card-body">
+                                    {% if stud.attend %}
+                                    {% set total = namespace(value=0) %}
+                                    <table class=" w-100">
+                                        {% for att in stud.attend  %}
+                                        <tr>
+                                            <td><h6>{{att.date.date()}} : </h6></td><td><h6>{{att.minute}}mins</h6></td>
+                                        </tr>
+                                        {% set total.value = total.value + att.minute  %}
+                                        <!-- {{ total }} -->
+                                        {% endfor %}
+                                    </table>
+                                    <div class=" card-footer w-100 m-n2">
+                                        total = {{total.value}} mins <br>
+                                        {% set hr = total.value / 60 %}
+                                        {% set min = total.value % 60 %}
+                                        total = {{hr|round|int}} : {{min}} hr
+                                        <form action="/admin/attendance/clear" method="post">
+                                            <input type="text" name="user" value="{{stud.username}}" style="display: none;" >
+                                            <button type="submit" class="btn btn-warning text-light">Reset</button>
+                                        </form>
+                                    </div>
+                                    {% endif %}
+                                </div>    
+                            </div>
+                        </div>
+                    {% endfor %}
                 {% endif %}
                 <h4 class=" m-3">Name</h4><h5 id="PName">{{ tutor.fname }}</h5>
                 <h4 class=" m-3">Username</h4><h5 id="PName">{{ tutor.username }}</h5>
@@ -27,16 +66,9 @@
                 <h4 class=" m-3">Date of Birth</h4><h5 id="PDob">{{tutor.dob.date()}}</h5>
                 
             </div>
-            <div class=" col-md-8 col-sm-12 text-center card  mt-2">
+            <div class=" col-md-6 col-sm-12 text-center card  mt-2">
                 <div class=" row p-4">
-                    <!-- <div class=" col-md-5 col-sm-5 card bg-success m-3" id="monGet">
-                        <h4 class="card-title text-light">Total Get</h4><h2 id="monGetData" class="card_data text-center text-white"></h2>
-                            
-                        </div>
-                        <div class=" col-md-5 col-sm-5 card bg-warning m-3" id="monPay">
-                        <h4 class="card_title text-light">Pay</h4><h2 id="monPayData" class="card_data text-center text-white h-50"></h2>
-                            
-                        </div> -->
+                    
                 </div>
                    
                     

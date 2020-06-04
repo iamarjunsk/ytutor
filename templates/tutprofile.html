@@ -21,8 +21,8 @@
           </button>
         <div class="col-4">
             <div class="row" >
-                <div class="col-3 p-4">
-                    <sk class=" titleTExt text-light text-right p-3 text-uppercase">{{user.fname}}</sk>
+                <div class="col-3 pt-3">
+                    <sk class="  text-light p-1 text-uppercase">{{user.fname}}</sk>
                 </div>
                 <div class="col-3">
                     <div class="navbar-collapse collapse m-6 " id="navbarColor01">
@@ -44,6 +44,39 @@
         <div class="row">
             <div class="col-md-8 col-sm-12 mt-5 pt-4" style="font-family: 'Caveat', cursive;">
                 <h2> Hai {{user.fname}}</h2>
+                {% if studs %}
+                <div class=" row "></div>
+                    {% for stud in studs %}
+                        <div class="col-sm-4 col-md-5">
+                            <div class="card m-3 bg-primary text-light">
+                                <div class=" card-header">
+                                    {{stud.fname}}
+                                </div>
+                                <div class=" card-body">
+                                    {% if stud.attend %}
+                                    {% set total = namespace(value=0) %}
+                                    <table class=" w-100">
+                                        {% for att in stud.attend  %}
+                                        <tr>
+                                            <td><h4>{{att.date.date()}} : </h4></td><td><h4>{{att.minute}}mins</h4></td>
+                                        </tr>
+                                        {% set total.value = total.value + att.minute  %}
+                                        <!-- {{ total }} -->
+                                        {% endfor %}
+                                    </table>
+                                    <div class=" card-footer w-100 m-n2">
+                                        total = {{total.value}} mins <br>
+                                        {% set hr = total.value / 60 %}
+                                        {% set min = total.value % 60 %}
+                                        total = {{hr|round|int}} : {{min}} hr
+
+                                    </div>
+                                    {% endif %}
+                                </div>    
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="col-md-4 col-sm-12 p-2">
                 <div class="card">
@@ -113,7 +146,7 @@
                                     Taluk 
                                 </th>
                                 <td class="p-2">
-                                    {{user.taluk}}
+                                    {{user.block}}
                                 </td>
                             </tr>
                             <tr>
@@ -121,7 +154,7 @@
                                     Place
                                 </th>
                                 <td class="p-2">
-                                    {{user.village}}
+                                    {{user.location}}
                                 </td>
                             </tr>
                             <tr>

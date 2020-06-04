@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, Response, session, flash
+from flask import Flask, render_template, url_for, request, redirect, Response, session, flash, make_response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import requests
@@ -8,6 +8,9 @@ from io import BytesIO
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys
 import smtplib
+
+import pdfkit
+import random
 
 app=Flask(__name__)
 
@@ -87,7 +90,7 @@ class Customer(db.Model):
     tuition = db.Column(db.String(30), nullable=False)
     image = db.Column(db.String(800000), nullable=False, default='False')
     tutor = db.Column(db.String(30),nullable=True)
-    attend = db.Column(db.Integer,nullable=True)
+    attend = db.relationship('Attendence', backref='todayatt')
     tudattend = db.Column(db.Integer,nullable=True)
     parent = db.Column(db.String(30), nullable=False)
     date = db.Column(db.DateTime,nullable=False, default = datetime.utcnow)
@@ -114,12 +117,29 @@ class Marketer(db.Model):
     ismale = db.Column(db.Boolean, nullable=False)
     date = db.Column(db.DateTime,nullable=False, default = datetime.utcnow)
 
+class Attendence(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime,nullable=False, default = datetime.utcnow)
+    minute=db.Column(db.Integer)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
+ 
 class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(30), nullable=False)
     username = db.Column(db.String(30), nullable=False)
     password = db.Column(db.String(300), nullable=False)
     issuperadmin = db.Column(db.Boolean, nullable = True, default = False)   
+
+
+# @app.route('/pdf')
+# def method_name():
+#     redered="hai"
+#     pdf=pdfkit.from_string(redered,False)
+
+#     response=make_response(pdf)
+#     response.headers['Content-Type']='application/pdf'
+#     response.headers['Content-Disposition']='inline; filename=test.pdf'
+#     return 
 
 @app.route('/tutor/verify',methods=['GET','POST'])
 def tutvarify():
@@ -146,7 +166,10 @@ def markvarify():
         admin.markid=markid
         db.session.commit()
         messegeEmail="Welcome to YoursTutor \nHelo " + admin.fname + " your ID and Username is \n " + str(admin.markid) + " and " + admin.username + " . \nThankyou :)"
-        server.sendmail(senderEmail,admin.email, messegeEmail )
+        try:
+            server.sendmail(senderEmail,admin.email, messegeEmail )
+        except:
+            flash("Issue found in Sending Email")
         print("Email sended")
         flash("Verified")
         return redirect('/admin/marketer/'+user)
@@ -156,11 +179,14 @@ def tutassign():
     if request.method == "POST" :
         user=request.form.get("username")
         tutname=request.form.get("tutname")
+        tut=Tutor.query.filter_by(username=tutname).first()
+        if(not tut):
+            flash("Tutor not found!")
+            return redirect('/admin/student/'+user)
         admin = Customer.query.filter_by(username=user).first()
         admin.tutor = tutname
         db.session.commit()
-        tut=Tutor.query.filter_by(username=tutname).first()
-        messegeEmail="Helo " + admin.fname + " your ID and Username is \n " + str(admin.tutid) + " and " + admin.username + "\nWe assigned a tutor for you named "+ tut.fname +" . \nThankyou :)"
+        messegeEmail="Helo " + admin.fname + " your ID and Username is \n " + str(admin.studid) + " and " + admin.username + "\nWe assigned a tutor for you named "+ tut.fname +" . \nThankyou :)"
         server.sendmail(senderEmail,admin.email, messegeEmail )
         print("Email sended")
         flash("Tutor updated")
@@ -174,6 +200,14 @@ def tutdelete():
         db.session.commit()
         return redirect('/admin/tutor/'+user)
 
+@app.route('/marketer/delete',methods=['GET','POST'])
+def markdelete():
+    if request.method == "POST" :
+        user=request.form.get("username")
+        admin = Marketer.query.filter_by(username=user).update(dict(isactive=False))
+        db.session.commit()
+        return redirect('/admin/tutor/'+user)
+
 @app.route('/student/delete',methods=['GET','POST'])
 def studdelete():
     if request.method == "POST" :
@@ -181,13 +215,35 @@ def studdelete():
         admin = Customer.query.filter_by(username=user).update(dict(isactive=False))
         db.session.commit()
         return redirect('/admin/student/'+user)
+@app.route('/student/attentence', methods=['POST'])
+def att():
+    tut = request.form.get("tutor")
+    stud = request.form.get("stud")
+    minute = request.form.get("minute")
+    t = Tutor.query.filter_by(username=tut).first()
+    s = Customer.query.filter_by(username=stud).first()
+    if(t):
+        todaydate = datetime.utcnow().date()
+        at= Attendence(date = todaydate, minute=minute, todayatt=s)
+        db.session.add(at)
+        db.session.commit()
+        try:
+            messege = "Hello "+ t.fname +", Your Attendance is Updated"
+            server.sendmail(senderEmail,t.email, messege )
+        except:
+            pass
+        flash("attendance updated")
+    else:
+        flash("Tutor not found")
+    return redirect('/student')
 
 @app.route('/tutor/',methods=['GET','POST'])
 def tutor():
     try:
         user = session['tutor']
         tut = Tutor.query.filter_by(username=user).first()
-        return render_template('tutprofile.html',user=tut)
+        studs=Customer.query.filter_by(tutor=tut.username).all()
+        return render_template('tutprofile.html',user=tut,studs=studs)
     except:
         return redirect('/tutor/login')
 
@@ -196,7 +252,8 @@ def student():
     try:
         user = session['student']
         stud = Customer.query.filter_by(username=user).first()
-        return render_template('studprofile.html',user=stud)
+        tut = Tutor.query.filter_by(username=stud.tutor).first()
+        return render_template('studprofile.html',user=stud,tutor=tut)
     except:
         return redirect('/student/login')
 
@@ -208,7 +265,7 @@ def marketer():
         return render_template('markprof.html',user=mark)
         # return redirect('/')
     except:
-        return redirect('/marketer/login')
+        return redirect('/marketer/register')
 
 @app.route('/tutor/register',methods=['GET','POST'])
 def tutreg():
@@ -216,17 +273,23 @@ def tutreg():
         email = request.form.get("email")
         checkEm = Tutor.query.filter_by(email=email).first()
         if(checkEm):
-            return render_template('tutReg.html',student='active', messege="Email already registered")
+            flash("Email already registered")
+            return redirect('tutor/register')
         username = request.form.get("username")
         checkusr = Tutor.query.filter_by(username=username).first()
         if(checkusr):
-            return render_template('tutReg.html',student='active', messege="Username already taken")
+            flash("Username already taken")
+            return redirect('tutor/register')
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
         do =request.form.get("dob")
         do = do.split('-')
         dob = date(int(do[0]),int(do[1]),int(do[2]))
         phone = str(request.form.get("phone"))
+        if(len(phone)!=10):
+            print(len(phone))
+            flash("Phone number invalid!")
+            return redirect('/tutor/register')
         qualification = request.form.get("qualification")
         tuition = request.form.get("tuition")
         maths = bool(request.form.get("maths"))
@@ -251,7 +314,8 @@ def tutreg():
             district=locn[0]["PostOffice"][0]["District"]
             state=locn[0]["PostOffice"][0]["State"]
         except:
-            return render_template('tutReg.html', messege="PIN Code Invalid", tutor='active')
+            flash("PIN Code Invalid")
+            return redirect('/tutor/register')
         if(password1 == password2):
             password = generate_password_hash(password1, "sha256")
             user=Tutor(fname=name, username=username, email=email, password=password, dob=dob, date=todaydate, phone=phone, qualification=qualification, state=state, district=district, block=block, location=location, tuition=tuition, maths=maths, science=science, social=social, computer=computer, physics=physics, chemistry=chemistry, biology=biology, scmaths=scmaths, extra=extra, image=image, ismale=ismale )            
@@ -260,7 +324,8 @@ def tutreg():
             print('commited')
             return redirect('/tutor')
         else:
-            return render_template('tutReg.html',student='active', messege="Password missmatch")
+            flash("Password miss match")
+            return redirect('/tutor/register')
 
     return render_template('tutReg.html',tutor='active')
 
@@ -352,7 +417,8 @@ def markreg():
             db.session.add(user)
             db.session.commit()
             print('commited')
-            return redirect('/marketer/login')
+            flash("Registration Successfull")
+            return redirect('/marketer/register')
         else:
             flash("password Miss match")
             return redirect('/marketer/register')
@@ -436,6 +502,8 @@ def marketertlog():
     user = "Marketer"
     path="/marketer/login"
     return render_template('log.html', user=user, path=path, marketer='active',newuser='/marketer/register')
+
+
 
 
 
@@ -695,6 +763,20 @@ def marksh():
         }
         return render_template("admnon.html", display="none", search=search, marketer=True)
 
+@app.route('/admin/attendance/clear', methods=['POST'])
+def attendClr():
+    user = request.form.get("user")
+    us = Customer.query.filter_by(username=user).first()
+    att = Attendence.query.filter_by(customer_id=us.id).first()
+    while(att):
+        db.session.delete(att)
+        db.session.commit()
+        att = Attendence.query.filter_by(customer_id=us.id).first()
+        
+    print(att)
+    flash("Attendance deleted of "+us.fname)
+    return redirect('/admin/tutor/'+ us.tutor)
+
 @app.route('/admin/tutor/<int:tutid>/',methods=['GET','POST'])
 def tutadid(tutid):
     try:
@@ -744,7 +826,8 @@ def adtut(username):
                     tutid=400001+count
             else:
                 return render_template('404.html')
-            return render_template('tutadminprof.html',tutor=tutor,tutid=tutid)
+            stud=Customer.query.filter_by(tutor=tutor.username).all()
+            return render_template('tutadminprof.html',tutor=tutor,tutid=tutid,studs=stud)
         else:
             return redirect('/admin/login')
     except:

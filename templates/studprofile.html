@@ -43,7 +43,50 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 mt-5 pt-4" style="font-family: 'Caveat', cursive;">
+                {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    <div class="col-12 bg-white m-2 p-2" > 
+                        {% for message in messages %}
+                            <div class="bg-danger"><h2 class="text-light">{{ message }}</h2></div>
+                        {% endfor %}    
+                    </div>
+                    {% endif %}
+                {% endwith %}
                 <h2> Hai {{user.fname}}</h2>
+                {% if user.tutor %}
+                <h4>Tutor:{{ tutor.fname }}</h4>
+                <h5 class="  badge badge-dark text-center section-title text-light mt-2">Enter attendance here (in Min)</h5>
+                    <form action="/student/attentence" method="post" class=" w-25 row">
+                        <input type="text" name="tutor" value="{{ user.tutor }}" style="display: none;">
+                        <input type="text" name="stud" value="{{ user.username }}" style="display: none;">
+                        <input type="number" name="minute" class=" form-control m-2" required>
+                        <button type="submit" class="btn btn-primary m-2"> Submit </button>
+                    </form>            
+                {% endif %}
+                <div class="card w-100 " >
+                    <div class="card-header">attendance</div>
+                    <div class="card-body">
+                        {% if user.attend %}
+                        {% set total = namespace(value=0) %}
+                        <table class=" w-100">
+                            {% for att in user.attend  %}
+                            <tr>
+                                <td><h4>{{att.date.date()}} : </h4></td><td><h4>{{att.minute}}mins</h4></td>
+                            </tr>
+                            {% set total.value = total.value + att.minute  %}
+                            <!-- {{ total }} -->
+                            {% endfor %}
+                        </table>
+                        <div class=" card-footer w-100 m-n2">
+                            total = {{total.value}} mins <br>
+                            {% set hr = total.value / 60 %}
+                            {% set min = total.value % 60 %}
+                            total = {{hr|round|int}} : {{min}} hr
+
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
             <div class="col-md-4 col-sm-12 p-2">
                 <div class="card">
@@ -81,7 +124,7 @@
                                     DOB 
                                 </th>
                                 <td class="p-2">
-                                    {{user.dob}}
+                                    {{user.dob.date()}}
                                 </td>
                             </tr>
                             <tr>
@@ -220,18 +263,7 @@
                                 </td>
                                 {% endif %}
                             </tr>
-                            <tr>
-                                <th class="p-2">Verification</th>
-                                {% if user.isvaridy %}
-                                <td class="p-2 text-success">
-                                    Verified
-                                </td>
-                                {% else %}
-                                <td class="p-2 text-danger">
-                                    Not varified
-                                </td>
-                                {% endif %}
-                            </tr>
+
                         </table>       
                     </div>
 
