@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="shortcut icon" href="../satic/favicon.ico" type="image/x-icon">
     <link href="../static/fonts/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet"> 
     <script src="https://kit.fontawesome.com/417090db95.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -42,9 +42,10 @@
       </nav>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-12 mt-5 pt-4" style="font-family: 'Caveat', cursive;">
+            <div class="col-md-8 col-sm-12 mt-5 pt-4" style="font-family: 'Merriweather', serif;">
                 <h2> Hai {{user.fname}}</h2>
                 {% if studs %}
+                <h3 style="margin: 7px; color: rgb(34, 21, 151); text-decoration: underline;">Students</h3>
                 <div class=" row "></div>
                     {% for stud in studs %}
                         <div class="col-sm-4 col-md-5">
@@ -58,7 +59,7 @@
                                     <table class=" w-100">
                                         {% for att in stud.attend  %}
                                         <tr>
-                                            <td><h4>{{att.date.date()}} : </h4></td><td><h4>{{att.minute}}mins</h4></td>
+                                            <td><h6>{{att.date.date()}} : </h6></td><td><h5>{{att.minute}}mins</h5></td>
                                         </tr>
                                         {% set total.value = total.value + att.minute  %}
                                         <!-- {{ total }} -->

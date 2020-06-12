@@ -4,10 +4,18 @@
 <br />
 <div class="container p-5" style="height: 100%; box-shadow: 2px 2px 14px 4px #888888;">
   <div class="row" >
-
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    <div class="col-12 bg-white m-2 p-2" > 
+                        {% for message in messages %}
+                            <div class=" badge-pill bg-danger"><h2 class="text-light">{{ message }}</h2></div>
+                        {% endfor %}    
+                    </div>
+                    {% endif %}
+                {% endwith %}
     <div class=""><h3 class=" text-success m-3"><i class="fa fa-lock" ></i> Please login
     </h3>
-      <form action="{{path}}" method="post">
+      <form action="{{usr.path}}" method="post">
         <input
           type="text"
           placeholder="Username"
@@ -22,13 +30,9 @@
         />
         <input class="btn btn-outline-success m-2" type="submit" value="Login" />
       </form>
-      <a href="{{newuser}}"> New user?</a>
-      {% if error %}
-      <div class="badge badge-danger">
-        <p class="error">
-          <strong>Error:</strong> {{ error }} 
-        </p>
-        {% endif %} {% endblock base %}
+      <a href="{{usr.newuser}}"> New user?</a>
+      <a href="{{usr.reset}} " class=" ml-3"> Forgot password</a>
+       {% endblock base %}
 
       </div>
     </div>

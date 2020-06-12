@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password</title>
+    <style>
+        .item{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex; height: 100vh; align-items: center; justify-content: center;">
+        <form action="{{loc}}" method="post" style=" display: flex; flex-direction:column; ">
+            <input type="password" name="password1" class="item" placeholder="Password">
+            <input type="password" name="password2" class="item" placeholder="Re-Enter">
+            <button type="submit" style="margin-top: 10px; height: 35px; border-radius: 5px; color: honeydew; background-color: rgb(16, 156, 16);">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

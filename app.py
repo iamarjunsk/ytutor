@@ -14,7 +14,7 @@ import random
 
 app=Flask(__name__)
 
-ENV='prod'
+ENV='dev'
 if ENV == 'dev':
     app.debug=True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/yt'
@@ -437,19 +437,76 @@ def tutlog():
                 session['tutor']=username
                 return redirect('/tutor')
             else:
-                user = "Tutor"
-                path="/tutor/login"
-                message="Username or password missmatch"
-                return render_template('log.html', user=user, path=path, tutor='active', error=message, newuser='/tutor/register')
+                flash("Username or password missmatch")
+                return redirect('/tutor/login')
         else:
-            user = "Tutor"
-            path="/tutor/login"
-            message="Username not found"
-            return render_template('log.html', user=user, path=path, tutor='active', error=message, newuser='/tutor/register')
+            flash("Username not found")
+            return redirect('/tutor/login')
             
     user = "Tutor"
     path="/tutor/login"
-    return render_template('log.html', user=user, path=path, tutor='active', newuser='/tutor/register')
+    reset="/tutor/forgot"
+    newuser='/tutor/register'
+    usr = { 
+        "user":user,
+        "path":path,
+        "reset":reset,
+        "newuser":newuser
+    }
+    return render_template('log.html', tutor='active', usr=usr)
+
+@app.route('/tutor/forgot', methods=['GET', 'POST'])
+def tutreset():
+    if request.method=="GET":
+        session.pop('pin',None)
+        return render_template("password.html",vem="block",vpin="none")
+    else:
+        try:
+            pin = session["pin"]
+            session.pop('pin',None)
+            pin_c = request.form.get('pin')
+            if(pin == int(pin_c)):
+                loc='/tutor/pass'
+                return render_template('pass.html',loc=loc)
+            else:
+                flash("Pin Incorrect")
+                return redirect('/tutor/forgot')
+        except:
+            email = request.form.get('email')
+            session['passem']=email
+            isact = Tutor.query.filter_by(email=email).first()
+            if(isact):
+                n = random.randint(100000,999999)
+                session["pin"]=n
+                messegeEmail="\nHai "+ isact.fname + " username: "+ isact.username +", Your password reset code is "+ str(n)
+                server.sendmail(senderEmail,isact.email, messegeEmail )
+                return render_template("password.html",vem="none",vpin="block")
+            else:
+                flash("Email not registered")
+                return redirect('/tutor/forgot')
+
+@app.route('/tutor/pass', methods=['POST'])
+def tutpass():
+    pass1 = request.form.get('password1')
+    pass2 = request.form.get('password2')
+    if(pass1==pass2):
+        email=session['passem']
+        session.pop('passem',None)
+        user = Tutor.query.filter_by(email=email).first()
+        if(user):
+            password = generate_password_hash(pass1, "sha256")
+            user.password=password
+            db.session.commit()
+            flash("Password changed successfully.")
+            return redirect('/tutor/login')
+        else:
+            flash("No user found!")
+            return redirect('/student/login')
+    else:
+        flash('Password missmatch')
+        return redirect('/student/login')
+
+
 
 @app.route('/student/login' ,methods=['GET','POST'])
 def studtlog():
@@ -463,19 +520,73 @@ def studtlog():
                 session['student']=username
                 return redirect('/student')
             else:
-                user = "Student"
-                path="/student/login"
-                message="Username or password missmatch"
-                return render_template('log.html', user=user, path=path, student='active', error=message, newuser='/student/register')
+                flash("Username or password missmatch")
+                return redirect('/student/login')
         else:
-            user = "Student"
-            path="/student/login"
-            message="Username not found"
-            return render_template('log.html', user=user, path=path, student='active', error=message, newuser='/student/register')
-            
+            flash("Username not found")
+            return redirect('/student/login')            
     user = "Student"
     path="/student/login"
-    return render_template('log.html', user=user, path=path, student='active',newuser='/student/register')
+    reset="/student/forgot"
+    newuser='/student/register'
+    usr = { 
+        "user":user,
+        "path":path,
+        "reset":reset,
+        "newuser":newuser
+        }
+    return render_template('log.html', student='active', usr=usr)
+
+@app.route('/student/forgot', methods=['GET', 'POST'])
+def studreset():
+    if request.method=="GET":
+        session.pop('pin',None)
+        return render_template("password.html",vem="block",vpin="none")
+    else:
+        try:
+            pin = session["pin"]
+            session.pop('pin',None)
+            pin_c = request.form.get('pin')
+            if(pin == int(pin_c)):
+                loc='/student/pass'
+                return render_template('pass.html',loc=loc)
+            else:
+                flash("Pin Incorrect")
+                return redirect('/student/forgot')
+        except:
+            email = request.form.get('email')
+            session['passem']=email
+            isact = Customer.query.filter_by(email=email).first()
+            if(isact):
+                n = random.randint(100000,999999)
+                session["pin"]=n
+                messegeEmail="\nHai "+ isact.fname + " username: "+ isact.username +", Your password reset code is "+ str(n)
+                server.sendmail(senderEmail,isact.email, messegeEmail )
+                return render_template("password.html",vem="none",vpin="block")
+            else:
+                flash("Email not registered")
+                return redirect('/student/forgot')
+
+@app.route('/student/pass', methods=['POST'])
+def studpass():
+    pass1 = request.form.get('password1')
+    pass2 = request.form.get('password2')
+    if(pass1==pass2):
+        email=session['passem']
+        session.pop('passem',None)
+        user = Customer.query.filter_by(email=email).first()
+        if(user):
+            password = generate_password_hash(pass1, "sha256")
+            user.password=password
+            db.session.commit()
+            flash("Password changed successfully.")
+            return redirect('/student/login')
+        else:
+            flash("No user found!")
+            return redirect('/student/login')
+    else:
+        flash('Password missmatch')
+        return redirect('/student/login')
 
 @app.route('/marketer/login' ,methods=['GET','POST'])
 def marketertlog():
