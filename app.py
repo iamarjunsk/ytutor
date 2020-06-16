@@ -711,6 +711,216 @@ def admin():
             "kl13_m":kl13_m,
             "kl14_m":kl14_m
         }
+        indT1 = Tutor.query.filter_by(state="Andaman & Nicobar").count()
+        indT2 = Tutor.query.filter_by(state="Andhra Pradesh").count()
+        indT3 = Tutor.query.filter_by(state="Arunachal Pradesh").count()
+        indT4 = Tutor.query.filter_by(state="Assam").count()
+        indT5 = Tutor.query.filter_by(state="Bihar").count()
+        indT6 = Tutor.query.filter_by(state="Punjab").count()
+        indT7 = Tutor.query.filter_by(state="Chattisgarh").count()
+        indT8 = Tutor.query.filter_by(state="Dadra & Nagar Haveli").count()
+        indT9 = Tutor.query.filter_by(state="Daman & Diu").count()
+        indT10 = Tutor.query.filter_by(state="Delhi").count()
+        indT11 = Tutor.query.filter_by(state="Goa").count()
+        indT12 = Tutor.query.filter_by(state="Gujarat").count()
+        indT13 = Tutor.query.filter_by(state="Haryana").count()
+        indT14 = Tutor.query.filter_by(state="Himachal Pradesh").count()
+        indT15 = Tutor.query.filter_by(state="Jammu & Kashmir").count()
+        indT16 = Tutor.query.filter_by(state="Jharkhand").count()
+        indT17 = Tutor.query.filter_by(state="Karnataka").count()
+        indT18 = Tutor.query.filter_by(state="Kerala").count()
+        indT19 = Tutor.query.filter_by(state="Lakshadweep").count()
+        indT20 = Tutor.query.filter_by(state="Madhya Pradesh").count()
+        indT21 = Tutor.query.filter_by(state="Maharashtra").count()
+        indT22 = Tutor.query.filter_by(state="Manipur").count()
+        indT23 = Tutor.query.filter_by(state="Meghalaya").count()
+        indT24 = Tutor.query.filter_by(state="Mizoram").count()
+        indT25 = Tutor.query.filter_by(state="Nagaland").count()
+        indT26 = Tutor.query.filter_by(state="Odisha").count()
+        indT27 = Tutor.query.filter_by(state="Tamil Nadu").count()
+        indT28 = Tutor.query.filter_by(state="Rajasthan").count()
+        indT29 = Tutor.query.filter_by(state="Sikkim").count()
+        indT30 = Tutor.query.filter_by(state="Telangana").count()
+        indT31 = Tutor.query.filter_by(state="Tripura").count()
+        indT32 = Tutor.query.filter_by(state="Uttar Pradesh").count()
+        indT33 = Tutor.query.filter_by(state="Uttarakhand").count()
+        indT34 = Tutor.query.filter_by(state="West Bengal").count()
+
+        indS1 = Customer.query.filter_by(state="Andaman & Nicobar").count()
+        indS2 = Customer.query.filter_by(state="Andhra Pradesh").count()
+        indS3 = Customer.query.filter_by(state="Arunachal Pradesh").count()
+        indS4 = Customer.query.filter_by(state="Assam").count()
+        indS5 = Customer.query.filter_by(state="Bihar").count()
+        indS6 = Customer.query.filter_by(state="Punjab").count()
+        indS7 = Customer.query.filter_by(state="Chattisgarh").count()
+        indS8 = Customer.query.filter_by(state="Dadra & Nagar Haveli").count()
+        indS9 = Customer.query.filter_by(state="Daman & Diu").count()
+        indS10 = Customer.query.filter_by(state="Delhi").count()
+        indS11 = Customer.query.filter_by(state="Goa").count()
+        indS12 = Customer.query.filter_by(state="Gujarat").count()
+        indS13 = Customer.query.filter_by(state="Haryana").count()
+        indS14 = Customer.query.filter_by(state="Himachal Pradesh").count()
+        indS15 = Customer.query.filter_by(state="Jammu & Kashmir").count()
+        indS16 = Customer.query.filter_by(state="Jharkhand").count()
+        indS17 = Customer.query.filter_by(state="Karnataka").count()
+        indS18 = Customer.query.filter_by(state="Kerala").count()
+        indS19 = Customer.query.filter_by(state="Lakshadweep").count()
+        indS20 = Customer.query.filter_by(state="Madhya Pradesh").count()
+        indS21 = Customer.query.filter_by(state="Maharashtra").count()
+        indS22 = Customer.query.filter_by(state="Manipur").count()
+        indS23 = Customer.query.filter_by(state="Meghalaya").count()
+        indS24 = Customer.query.filter_by(state="Mizoram").count()
+        indS25 = Customer.query.filter_by(state="Nagaland").count()
+        indS26 = Customer.query.filter_by(state="Odisha").count()
+        indS27 = Customer.query.filter_by(state="Tamil Nadu").count()
+        indS28 = Customer.query.filter_by(state="Rajasthan").count()
+        indS29 = Customer.query.filter_by(state="Sikkim").count()
+        indS30 = Customer.query.filter_by(state="Telangana").count()
+        indS31 = Customer.query.filter_by(state="Tripura").count()
+        indS32 = Customer.query.filter_by(state="Uttar Pradesh").count()
+        indS33 = Customer.query.filter_by(state="Uttarakhand").count()
+        indS34 = Customer.query.filter_by(state="West Bengal").count()
+        
+        indM1 = Marketer.query.filter_by(state="Andaman & Nicobar").count()
+        indM2 = Marketer.query.filter_by(state="Andhra Pradesh").count()
+        indM3 = Marketer.query.filter_by(state="Arunachal Pradesh").count()
+        indM4 = Marketer.query.filter_by(state="Assam").count()
+        indM5 = Marketer.query.filter_by(state="Bihar").count()
+        indM6 = Marketer.query.filter_by(state="Punjab").count()
+        indM7 = Marketer.query.filter_by(state="Chattisgarh").count()
+        indM8 = Marketer.query.filter_by(state="Dadra & Nagar Haveli").count()
+        indM9 = Marketer.query.filter_by(state="Daman & Diu").count()
+        indM10 = Marketer.query.filter_by(state="Delhi").count()
+        indM11 = Marketer.query.filter_by(state="Goa").count()
+        indM12 = Marketer.query.filter_by(state="Gujarat").count()
+        indM13 = Marketer.query.filter_by(state="Haryana").count()
+        indM14 = Marketer.query.filter_by(state="Himachal Pradesh").count()
+        indM15 = Marketer.query.filter_by(state="Jammu & Kashmir").count()
+        indM16 = Marketer.query.filter_by(state="Jharkhand").count()
+        indM17 = Marketer.query.filter_by(state="Karnataka").count()
+        indM18 = Marketer.query.filter_by(state="Kerala").count()
+        indM19 = Marketer.query.filter_by(state="Lakshadweep").count()
+        indM20 = Marketer.query.filter_by(state="Madhya Pradesh").count()
+        indM21 = Marketer.query.filter_by(state="Maharashtra").count()
+        indM22 = Marketer.query.filter_by(state="Manipur").count()
+        indM23 = Marketer.query.filter_by(state="Meghalaya").count()
+        indM24 = Marketer.query.filter_by(state="Mizoram").count()
+        indM25 = Marketer.query.filter_by(state="Nagaland").count()
+        indM26 = Marketer.query.filter_by(state="Odisha").count()
+        indM27 = Marketer.query.filter_by(state="Tamil Nadu").count()
+        indM28 = Marketer.query.filter_by(state="Rajasthan").count()
+        indM29 = Marketer.query.filter_by(state="Sikkim").count()
+        indM30 = Marketer.query.filter_by(state="Telangana").count()
+        indM31 = Marketer.query.filter_by(state="Tripura").count()
+        indM32 = Marketer.query.filter_by(state="Uttar Pradesh").count()
+        indM33 = Marketer.query.filter_by(state="Uttarakhand").count()
+        indM34 = Marketer.query.filter_by(state="West Bengal").count()
+
+        states = {
+            "indM1":indM1,
+            "indM10":indM10,
+            "indM11":indM11,
+            "indM12":indM12,
+            "indM13":indM13,
+            "indM14":indM14,
+            "indM15":indM15,
+            "indM16":indM16,
+            "indM17":indM17,
+            "indM18":indM18,
+            "indM19":indM19,
+            "indM2":indM2,
+            "indM20":indM20,
+            "indM21":indM21,
+            "indM22":indM22,
+            "indM23":indM23,
+            "indM24":indM24,
+            "indM25":indM25,
+            "indM26":indM26,
+            "indM27":indM27,
+            "indM28":indM28,
+            "indM29":indM29,
+            "indM3":indM3,
+            "indM30":indM30,
+            "indM31":indM31,
+            "indM32":indM32,
+            "indM33":indM33,
+            "indM34":indM34,
+            "indM4":indM4,
+            "indM5":indM5,
+            "indM6":indM6,
+            "indM7":indM7,
+            "indM8":indM8,
+            "indM9":indM9,
+            "indS1":indS1,
+            "indS10":indS10,
+            "indS11":indS11,
+            "indS12":indS12,
+            "indS13":indS13,
+            "indS14":indS14,
+            "indS15":indS15,
+            "indS16":indS16,
+            "indS17":indS17,
+            "indS18":indS18,
+            "indS19":indS19,
+            "indS2":indS2,
+            "indS20":indS20,
+            "indS21":indS21,
+            "indS22":indS22,
+            "indS23":indS23,
+            "indS24":indS24,
+            "indS25":indS25,
+            "indS26":indS26,
+            "indS27":indS27,
+            "indS28":indS28,
+            "indS29":indS29,
+            "indS3":indS3,
+            "indS30":indS30,
+            "indS31":indS31,
+            "indS32":indS32,
+            "indS33":indS33,
+            "indS34":indS34,
+            "indS4":indS4,
+            "indS5":indS5,
+            "indS6":indS6,
+            "indS7":indS7,
+            "indS8":indS8,
+            "indS9":indS9,
+            "indT1":indT1,
+            "indT10":indT10,
+            "indT11":indT11,
+            "indT12":indT12,
+            "indT13":indT13,
+            "indT14":indT14,
+            "indT15":indT15,
+            "indT16":indT16,
+            "indT17":indT17,
+            "indT18":indT18,
+            "indT19":indT19,
+            "indT2":indT2,
+            "indT20":indT20,
+            "indT21":indT21,
+            "indT22":indT22,
+            "indT23":indT23,
+            "indT24":indT24,
+            "indT25":indT25,
+            "indT26":indT26,
+            "indT27":indT27,
+            "indT28":indT28,
+            "indT29":indT29,
+            "indT3":indT3,
+            "indT30":indT30,
+            "indT31":indT31,
+            "indT32":indT32,
+            "indT33":indT33,
+            "indT34":indT34,
+            "indT4":indT4,
+            "indT5":indT5,
+            "indT6":indT6,
+            "indT7":indT7,
+            "indT8":indT8,
+            "indT9":indT9,
+        }
+
 
         today_t=Tutor.query.filter_by(date=datetime.utcnow().date()).count()
         today_s=Customer.query.filter_by(date=datetime.utcnow().date()).count()
@@ -731,7 +941,7 @@ def admin():
         }
         # today_t=datetime.now()
 
-        return render_template('dashboard.html',district=district,today=today,total=total )
+        return render_template('dashboard.html',district=district,today=today,total=total,states=states)
     except:
         return redirect('/admin/login')
 
@@ -1014,7 +1224,8 @@ def addadmin():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    tut=Tutor.query.filter_by(isvarify=True).count()
+    return render_template('home.html',tut=tut)
 
 
 if __name__ == '__main__':
