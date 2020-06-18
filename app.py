@@ -14,7 +14,7 @@ import random
 
 app=Flask(__name__)
 
-ENV='prod'
+ENV='dev'
 if ENV == 'dev':
     app.debug=True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/yt'
