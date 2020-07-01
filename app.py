@@ -11,33 +11,32 @@ import smtplib
 
 import pdfkit
 import random
+from secrets import secretkey,email,emailpassword,db
 
 app=Flask(__name__)
 
-ENV='prod'
+ENV='dev'
 if ENV == 'dev':
     app.debug=True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/yt'
 else:
     app.debug=False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://iahokrwmwmjwyc:409d165249b6611305076aff424a5ce1c3f1da69932a60e5c1abaa97ab3f7d9b@ec2-52-7-39-178.compute-1.amazonaws.com:5432/d48sfsj0rh8h87'
+    app.config['SQLALCHEMY_DATABASE_URI'] = db
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
-app.secret_key = 'arjunsk'
+app.secret_key = secretkey
 
 
 db = SQLAlchemy(app)
 
 
-senderEmail='ytutor.mgt@gmail.com'
-emailPassword="ytutor@#yt"
+senderEmail=email
+emailPassword=emailpassword
 server=smtplib.SMTP('smtp.gmail.com',587)
 server.starttls()
 server.login(senderEmail,emailPassword)
 print("login success")
-# server.sendmail(senderEmail,'skangadippuram@gmail.com', "hai")
-# print("Email sended")
 
 class Tutor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -47,32 +46,38 @@ class Tutor(db.Model):
     username = db.Column(db.String(30), nullable = False)
     password = db.Column(db.String(300), nullable = False)
     dob = db.Column(db.DateTime, nullable = False)
-    phone = db.Column(db.String(20), nullable = False)
-    qualification = db.Column(db.String(50), nullable = False)
+    phone = db.Column(db.String(10), nullable = False)
+    pin = db.Column(db.String(10), nullable = False)
     state = db.Column(db.String(30), nullable = False)
     district = db.Column(db.String(30), nullable = False)
     block = db.Column(db.String(30), nullable = True)
     location = db.Column(db.String(30), nullable = True)
-    tuition = db.Column(db.String(30), nullable = True)
-    maths = db.Column(db.Boolean, nullable = True, default = False)
-    science = db.Column(db.Boolean, nullable = True, default = False)
-    social = db.Column(db.Boolean, nullable = True, default = False)
-    computer = db.Column(db.Boolean, nullable = True, default = False)
-    physics = db.Column(db.Boolean, nullable = True, default = False)
-    chemistry = db.Column(db.Boolean, nullable = True, default = False)
-    biology = db.Column(db.Boolean, nullable = True, default = False)
-    scmaths = db.Column(db.Boolean, nullable = True, default = False)
-    extra = db.Column(db.String(100), nullable = True)
     image = db.Column(db.String(800000), nullable = False, default = 'False')
-    student = db.Column(db.String(30),  nullable=True)
-    earn = db.Column(db.Float,default = 0)
-    totalearn = db.Column(db.Float,default = 0)
+    isactive = db.Column(db.Boolean, default = True)
     date = db.Column(db.DateTime,nullable = False,default = datetime.utcnow)
     isvarify = db.Column(db.Boolean, nullable = True, default = False)
     ismale = db.Column(db.Boolean, nullable = False)
-    isindian = db.Column(db.Boolean, nullable = True, default = True)
-    nonindplace = db.Column(db.String(20),nullable=True) 
-    isactive = db.Column(db.Boolean, default = True)
+    
+    qualification = db.Column(db.String(50), nullable = False)
+    Bed = db.Column(db.Boolean, nullable = True, default = False)
+    SET = db.Column(db.Boolean, nullable = True, default = False)
+    NET = db.Column(db.Boolean, nullable = True, default = False)
+    pursuing = db.Column(db.String(50), nullable = True)
+
+    exInstitute = db.Column(db.String(30), nullable = True)
+    exTime = db.Column(db.String(30), nullable = True)
+
+    is1to5 = db.Column(db.Boolean,default = False)
+    is6to12 = db.Column(db.Boolean,default = False)
+    isUG = db.Column(db.Boolean,default = False)
+    isPG = db.Column(db.Boolean,default = False)
+    isCoaching = db.Column(db.Boolean,default = False)
+    ugBrach = db.Column(db.String(30), nullable = True)
+    pgBrach =   db.Column(db.String(30), nullable = True)
+    coachBrach = db.Column(db.String(30), nullable = True)
+    tutionopt =  db.Column(db.String(30), nullable = True)
+    syllabus = db.Column(db.String(30), nullable = True)
+    isOnline = db.Column(db.Boolean, nullable = True, default = False)
 
 class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)

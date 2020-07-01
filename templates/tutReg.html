@@ -14,6 +14,7 @@
       {% endwith %} 
     </div>   
     <form method="POST" action="/tutor/register" enctype="multipart/form-data" class="col-sm-12 col-md-6 ">
+    <h2 class="  badge badge-primary text-center section-title text-light p-1">Personal Info</h2> <br>
       <small id="emailHelp" class="form-text  badge badge-pill badge-info text-light">We'll never share your email with anyone else.</small>
       <input type="text" class=" form-control m-2" placeholder="Name" id="name" autofocus="true" name="name" required="">
       <input type="text" class=" form-control m-2" placeholder="Username" id="username" autofocus="true" name="username" required="">
@@ -37,11 +38,11 @@
       <input type="text" class=" form-control m-2" placeholder="Confirm Password" id="password2" name="password2" required="">
       <h5 class=" badge badge-dark text-center section-title text-light ">Date of birth</h5>
       <input type="date" class=" form-control m-2" placeholder="" id="dob" name="dob" required=""><br>
-      <input type="number" class=" form-control m-2" placeholder="Phone Number" id="phone" name="phone" required="">
-      <input type="" class=" form-control m-2" placeholder="Qualification" id="qualification" name="qualification" required="">
-          
-          
+      <input type="number" class=" form-control m-2" placeholder="WhatsApp Number" id="phone" name="phone" required="">
+      <!-- <input type="" class=" form-control m-2" placeholder="Qualification" id="qualification" name="qualification" required=""> -->
       <input type="number"  class=" form-control m-2" placeholder="Enter Pincode" id="pin" name="pin" required>
+          
+      <!--
       <select class="form-control m-2 " id="txtTut" required="" name="tuition"><option value="" disabled="" selected="" >Select your preferred tuition</option>
         <option value="" disabled=""></option>
         <option value="" disabled="">School level</option>
@@ -64,6 +65,7 @@
         <option value="neet">NEET</option><option value="gate">GATE</option>
               
       </select>
+      -->
           
 
       <div id="schOp" class="m-2 p-2  custom-checkbox form-control" style="height: auto; display: none;" >
@@ -71,7 +73,6 @@
         <input type="checkbox" value=true  id="Science" name="science">Science
         <input type="checkbox" value=true  id="Social" name="social">Social
         <input type="checkbox" value=true  id="Computer" name="computer">Computer
-
       </div>
       <div id="scieOp" class="m-2 p-2  custom-checkbox form-control" style="height: auto; display: none;">
         <input type="checkbox" value=true  id="Physics" name="physics">Physics
@@ -80,11 +81,13 @@
         <input type="checkbox" value=true  id="ScMaths" name="scMaths">Maths
 
       </div>
+        <!--
       <div class=" form-control " style="height: auto;">
         <h5 class="  badge badge-dark text-center section-title text-light ">Extra Skills(Any type skills you can enter)</h5>
         <textarea id="txtExt" name="extra" cols="30" rows="10" class="form-control m-2 h-25" placeholder="Hey! Do you love to teach any skill apart from academics ?&#10;Just mention below , we will help to monetise it     &#10; Eg:&#10; Programming&#10; App develpment&#10; Painting &#10; Cooking &#10; Consultancy &#10; Etc ">
        </textarea>
       </div>
+       -->
 
         <h5 class="  badge badge-dark text-center section-title text-light ">Any valid Id proof image related to education.</h5>
         <input class="form-control m-2 " type="file" id="im" name="image" accept="image/jpeg" onchange="dp(event,'output3')">
