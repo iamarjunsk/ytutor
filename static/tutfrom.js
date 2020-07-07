@@ -1,6 +1,10 @@
 $(document).ready(function(){
     $('#schOp').hide();
     $('#scieOp').hide();
+    $('#ugbrach').hide();
+    $('#pgbrach').hide();
+    $('#coachbrach').hide();
+    $('#syllabus').hide();
 });
 $('#txtTut').change(function(){
     if($('#txtTut').val()=="1to10"){
@@ -17,6 +21,39 @@ $('#txtTut').change(function(){
     }
     
 });
+$('#to12').change(function(){
+    if($('#to12').is(":checked")){
+        $('#syllabus').show();
+    }
+    else{
+        $('#syllabus').hide();
+    }
+});
+$('#ug').change(function(){
+    if($('#ug').is(":checked")){
+        $('#ugbrach').show();
+    }
+    else{
+        $('#ugbrach').hide();
+    }
+});
+$('#pg').change(function(){
+    if($('#pg').is(":checked")){
+        $('#pgbrach').show();
+    }
+    else{
+        $('#pgbrach').hide();
+    }
+});
+$('#coaching').change(function(){
+    if($('#coaching').is(":checked")){
+        $('#coachbrach').show();
+    }
+    else{
+        $('#coachbrach').hide();
+    }
+});
+
 var dp = function(file,ig) {
     var input = file.target;
 

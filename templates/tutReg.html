@@ -68,7 +68,7 @@
       -->
           
 
-      <div id="schOp" class="m-2 p-2  custom-checkbox form-control" style="height: auto; display: none;" >
+      <!-- <div id="schOp" class="m-2 p-2  custom-checkbox form-control" style="height: auto; display: none;" >
         <input type="checkbox" value=true  id="Maths" name="maths">Maths
         <input type="checkbox" value=true  id="Science" name="science">Science
         <input type="checkbox" value=true  id="Social" name="social">Social
@@ -80,7 +80,7 @@
         <input type="checkbox" value=true  id="Biology" name="biology">Biology
         <input type="checkbox" value=true  id="ScMaths" name="scMaths">Maths
 
-      </div>
+      </div> -->
         <!--
       <div class=" form-control " style="height: auto;">
         <h5 class="  badge badge-dark text-center section-title text-light ">Extra Skills(Any type skills you can enter)</h5>
@@ -93,7 +93,45 @@
         <input class="form-control m-2 " type="file" id="im" name="image" accept="image/jpeg" onchange="dp(event,'output3')">
         <!-- <img id="output3" class=" imag w-75 m-2"><br> -->
         <input class=" form-control m-2" name="output3" id="output3" style="display:none;">
-      
+
+
+  <!-- qualification --> <br>
+  <h2 class="  badge badge-primary text-center section-title text-light p-1">Qyalification Info</h2> <br>
+
+        <input type="" class=" form-control m-2" placeholder="Qualification" id="qualification" name="qualification" required="">
+        <div class="m-2">
+          <h5 class="  badge badge-dark text-center section-title text-light ">Check if you qualified any, if not leave blank.</h5> <br>
+          <input type="checkbox" value=true name="bed" id=""><label class='ml-2' for="bed">Bed</label><br>
+          <input type="checkbox" value=true name="set" id=""><label class='ml-2' for="bed">SET</label> <br>
+          <input type="checkbox" value=true name="net" id=""><label class='ml-2' for="bed">NET</label> <br>
+        </div>
+        <br>
+        <h5 class="  badge badge-info text-center section-title text-light ">Verified in the interview.</h5> <br>
+        <input class="ml-2 form-control" type="text" placeholder="Currently Persuing" name="persuing" id="" required>
+        <br>
+        <h2 class="  badge badge-primary text-center section-title text-light p-1">Experiance</h2> <br>
+        <h5 class="  badge badge-info text-center section-title text-light ">Verified in the interview.</h5> <br>
+        <input type="text" placeholder="Institution" name="institute" class=" form-control ml-2">
+        <input type="number" placeholder="Time period (in year)" name="extime" class=" form-control m-2">
+        <br>
+        <h2 class="  badge badge-primary text-center section-title text-light p-1">Platform</h2> <br>
+        <h5 class="  badge badge-dark text-center section-title text-light ">Select class</h5> <br>
+        <div class=" m-2">
+            <input type="checkbox" value=true name="to5" id=""><label class="ml-2" for="to5">1-5</label><br>
+            <input id='to12' type="checkbox" value=true  name="to12" id=""><label class="m-2" for="to12">6-12</label>
+            <input id="syllabus" type="text" placeholder="Syllabus" name="syllabus" id=""><br>
+            <input id="ug" type="checkbox" name="ug" id=""><label class="m-2" for="ug">UG</label>
+            <input id="ugbrach" type="text" placeholder="Brach ex: BTech,BCA,BSe,BCom,BPharm .." name="ugbranch" id=""><br>
+            <input id="pg" type="checkbox" name="pg" id=""><label class="m-2" for="pg">PG</label>
+            <input id="pgbrach" type="text" placeholder="Brach ex: MTech,MCA,MSe,MCom,MPharm .." name="pgbranch" id=""><br>
+            <input id="coaching" type="checkbox" name="coaching" id=""><label class="m-2" for="coaching">Coaching</label>
+            <input id="coachbrach" type="text" placeholder="ex: IELTS,CAT,NEET,.." name="coachbranch" id=""><br>
+        </div>
+        <h5 class="  badge badge-info text-center section-title text-light ">Seperate subjects using comma(,)</h5> <br>
+        <input type="text" placeholder="Your convinient subjects to take tuition ex:Maths,Physics, ... " name="subjects" class=" form-control m-2 " required>
+        <input type="text" placeholder="Others, ex: Craft, Drawing, Designing , ... " name="others" class=" form-control m-2 ">
+
+        <input type="checkbox" value=true  name="isonline" id=""><label class="m-2" for="isonline">take tuition only on Online</label>
         <button type="submit" class=" form-control btn-primary">Submit</button>
         <div class="row">
           <div class="col-6 mt-4">

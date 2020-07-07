@@ -15,7 +15,7 @@ from secrets import secretkey,email,emailpassword,db
 
 app=Flask(__name__)
 
-ENV='dev'
+ENV='prod'
 if ENV == 'dev':
     app.debug=True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/yt'
@@ -54,7 +54,7 @@ class Tutor(db.Model):
     location = db.Column(db.String(30), nullable = True)
     image = db.Column(db.String(800000), nullable = False, default = 'False')
     isactive = db.Column(db.Boolean, default = True)
-    date = db.Column(db.DateTime,nullable = False,default = datetime.utcnow)
+    date = db.Column(db.DateTime,nullable = False,default = datetime.utcnow().date)
     isvarify = db.Column(db.Boolean, nullable = True, default = False)
     ismale = db.Column(db.Boolean, nullable = False)
     
@@ -65,7 +65,7 @@ class Tutor(db.Model):
     pursuing = db.Column(db.String(50), nullable = True)
 
     exInstitute = db.Column(db.String(30), nullable = True)
-    exTime = db.Column(db.String(30), nullable = True)
+    exTime = db.Column(db.Integer, nullable = True)
 
     is1to5 = db.Column(db.Boolean,default = False)
     is6to12 = db.Column(db.Boolean,default = False)
@@ -77,7 +77,9 @@ class Tutor(db.Model):
     coachBrach = db.Column(db.String(30), nullable = True)
     tutionopt =  db.Column(db.String(30), nullable = True)
     syllabus = db.Column(db.String(30), nullable = True)
+    others = db.Column(db.String(100),nullable=True)
     isOnline = db.Column(db.Boolean, nullable = True, default = False)
+
 
 class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -275,16 +277,18 @@ def marketer():
 @app.route('/tutor/register',methods=['GET','POST'])
 def tutreg():
     if request.method == "POST" :
+        name = request.form.get("name")
+        username = request.form.get("username")
         email = request.form.get("email")
         checkEm = Tutor.query.filter_by(email=email).first()
         if(checkEm):
             flash("Email already registered")
             return redirect('tutor/register')
-        username = request.form.get("username")
         checkusr = Tutor.query.filter_by(username=username).first()
         if(checkusr):
             flash("Username already taken")
             return redirect('tutor/register')
+        ismale=bool(request.form.get("male"))
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
         do =request.form.get("dob")
@@ -295,21 +299,6 @@ def tutreg():
             print(len(phone))
             flash("Phone number invalid!")
             return redirect('/tutor/register')
-        qualification = request.form.get("qualification")
-        tuition = request.form.get("tuition")
-        maths = bool(request.form.get("maths"))
-        science = bool(request.form.get("science"))
-        social = bool(request.form.get("social"))
-        computer = bool(request.form.get("computer"))
-        physics = bool(request.form.get("physics"))
-        chemistry = bool(request.form.get("chemistry"))
-        biology = bool(request.form.get("biology"))
-        scmaths = bool(request.form.get("ScMaths"))
-        extra = request.form.get("extra")
-        name = request.form.get("name")
-        ismale=bool(request.form.get("male"))
-        image = request.form.get('output3')
-        todaydate = datetime.utcnow().date()
         pin=request.form.get('pin')
         loc=requests.get('https://api.postalpincode.in/pincode/'+pin)
         try:
@@ -321,9 +310,34 @@ def tutreg():
         except:
             flash("PIN Code Invalid")
             return redirect('/tutor/register')
+        image = request.form.get('output3')
+        todaydate = datetime.utcnow().date()
+
+        qualification = request.form.get("qualification")
+        Bed = bool(request.form.get("bed"))
+        SET = bool(request.form.get("set"))
+        NET = bool(request.form.get("net"))
+        persuing = request.form.get("persuing")
+        
+        institute = request.form.get('institute')
+        extime = request.form.get('extime')
+
+        isto5 = bool(request.form.get("to5"))
+        isto12 = bool(request.form.get("to12"))
+        syllabus = request.form.get("syllabus")
+        isug = bool(request.form.get("ug"))
+        ugbranch = request.form.get("ugbranch")
+        ispg = bool(request.form.get("pg"))
+        pgbranch = request.form.get("pgbranch")
+        iscoaching = bool(request.form.get("coaching"))
+        coachbranch = request.form.get("coachbranch")
+
+        tuition = request.form.get('subjects')
+        others = request.form.get('others')
+        isonline = bool(request.form.get("isonline"))
         if(password1 == password2):
             password = generate_password_hash(password1, "sha256")
-            user=Tutor(fname=name, username=username, email=email, password=password, dob=dob, date=todaydate, phone=phone, qualification=qualification, state=state, district=district, block=block, location=location, tuition=tuition, maths=maths, science=science, social=social, computer=computer, physics=physics, chemistry=chemistry, biology=biology, scmaths=scmaths, extra=extra, image=image, ismale=ismale )            
+            user=Tutor(email = email, fname = name, username = username, password = password, dob = dob, phone = phone, pin = pin, state = state, district = district, block = block, location = location, image = image, ismale = ismale, qualification = qualification, Bed = Bed, SET = SET, NET = NET, pursuing = persuing, exInstitute = institute, exTime = extime, is1to5 = isto5, is6to12 = isto12, isUG = isug, isPG = ispg, isCoaching = iscoaching, ugBrach = ugbranch, pgBrach = pgbranch, coachBrach = coachbranch, tutionopt = tuition, syllabus = syllabus, others = others, isOnline = isonline)            
             db.session.add(user)
             db.session.commit()
             print('commited')
@@ -1025,7 +1039,7 @@ def login():
 def tutsh():
     if request.method == "POST":
         sh=request.form.get("search")
-        course=Tutor.query.filter(Tutor.tuition.contains(sh)).all()
+        course=Tutor.query.filter(Tutor.tutionopt.contains(sh)).all()
         names=Tutor.query.filter(Tutor.fname.contains(sh)).all()
         location=Tutor.query.filter(Tutor.location.contains(sh)).all()  
         block=Tutor.query.filter(Tutor.block.contains(sh)).all()  
@@ -1033,6 +1047,24 @@ def tutsh():
         state=Tutor.query.filter(Tutor.state.contains(sh)).all()  
         username=Tutor.query.filter(Tutor.username.contains(sh)).all()
         qualific=Tutor.query.filter(Tutor.qualification.contains(sh)).all()
+        if(sh == 'Bed' or sh == 'bed'):
+            bed = Tutor.query.filter_by(Bed=True).all()
+            search={
+                'bed':bed
+            }
+            return render_template("admnon.html", display="none", search=search,tutor=True)
+        if(sh == 'SET' or sh == 'set' or sh == 'Set'):
+            bed = Tutor.query.filter_by(SET=True).all()
+            search={
+                'set':bed
+            }
+            return render_template("admnon.html", display="none", search=search,tutor=True)
+        if(sh == 'NET' or sh == 'net' or sh == 'Net'):
+            bed = Tutor.query.filter_by(NET=True).all()
+            search={
+                'net':bed
+            }
+            return render_template("admnon.html", display="none", search=search,tutor=True)
         search={
             "course":course,
             "names":names,

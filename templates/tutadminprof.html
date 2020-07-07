@@ -1,6 +1,11 @@
 {% extends 'head.html' %}
 {% block title %}
     <title>{{tutor.fname}}</title>
+    <style>
+        h4{
+            color:rgb(19, 121, 134)
+        }
+    </style>
 {% endblock title %}
     {% block body %}
         
@@ -62,15 +67,63 @@
                 <h4 class=" m-3">Block</h4><h5 id="PCity">{{tutor.block}}</h5>
                 <h4 class=" m-3">Location</h4><h5 id="PTown">{{tutor.location}}</h5>
                 <h4 class=" m-3">Qualification</h4><h5 id="PQuali">{{tutor.qualification}}</h5>
-                <h4 class=" m-3">Prefered Tuision</h4><h5 id="PTuit">{{tutor.tuition}}</h5>
                 <h4 class=" m-3">Date of Birth</h4><h5 id="PDob">{{tutor.dob.date()}}</h5>
+                <h4 class=" m-3">Prefered Tuision</h4><h5 id="PTuit">{{tutor.tutionopt}}</h5>
+                <h4 class=" m-3">Tuition Categories</h4>
+                {% if tutor.is1to5 %}
+                    <h5 class=' mb-5'>1 - 5</h5><br>
+                {% endif %}
+                {% if tutor.is6to12 %}
+                    <h5>6 - 12</h5>
+                    <h5 class=' mb-5'>{{tutor.syllabus}}</h5><br><br>
+                {% endif %}
+                {% if tutor.isUG %}
+                    <h5>UG</h5>
+                    <h5>{{tutor.ugBrach}}<h5><br>
+                {% endif %}
+                {% if tutor.isPG %}
+                    <h5>UG</h5>
+                    <h5>{{tutor.pgBrach}}<h5><br>
+                {% endif %}
+                {% if tutor.isCoaching %}
+                    <h5>UG</h5>
+                    <h5>{{tutor.coachBrach}}<h5><br>
+                {% endif %}
+                {% if tutor.others %}
+                    <h5>Others</h5>
+                    <h5>{{tutor.others}}<h5><br>
+                {% endif %}
+
+                {% if tutor.Bed %}
+                    <h5 class=' mb-1'>Bed</h5><br>
+                {% endif %}
+                {% if tutor.SET %}
+                    <h5 class=' mb-1'>SET</h5><br>
+                {% endif %}
+                {% if tutor.NET %}
+                    <h5 class=' mb-1'>NET</h5><br>
+                {% endif %}
+                <h4>Pursuing</h4>
+                <h5>{{tutor.pursuing}}</h5>
+                <h4>Experiance</h4>
+                {% if  tutor.exInstitute %}
+                    <h5>{{tutor.exInstitute}}</h5>
+                    <h5>{{tutor.exTime}}</h5>
+                {% else %}
+                    <h5>No previous experiance</h5>
+                {% endif %}
                 
             </div>
             <div class=" col-md-6 col-sm-12 text-center card  mt-2">
                 <div class=" row p-4">
                     
                 </div>
-                   
+                <h4>Tuition Mode</h4>
+                   {% if tutor.isOnline %}
+                    <h5>Online</h5>
+                {% else %}
+                    <h5>Offline</h5>
+                {% endif %}
                     
                  <h4>Identity card</h4>
                 <img id="qual" class=" card-img m-2 h-50 w-100" src={{tutor.image}}>

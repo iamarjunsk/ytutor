@@ -60,6 +60,130 @@
         </div>
 </div>
 {% if search %}
+
+<div class=" row justify-content-center">
+    {% if search.net %}
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#byname" aria-expanded="false" aria-controls="collapseExample">
+            Search result by NET
+        </button> 
+    </p>
+    <div class="collapse" id="byname">
+        <h4>Search result by NET</h4>
+        {% for name in search.net %}
+        <div class="card bg-dark text-light m-2 ">
+            <div class="card-header w-100 ">
+                {{name.fname}}
+            </div>
+            <div class="card-body">
+                <h5 class=" card-text">{{ name.username }}</h5>
+                <h5 class="card-text">{{ name.email }}</h5>
+                <h5 class="card-text">{{ name.phone }}</h5>
+                <h5 class="card-text">{% if name.ismale %}
+                Male {% else %} Female {% endif %}</h5>
+                <h5 class="card-text">{{ name.state }}</h5>
+                <h5 class="card-text">{{ name.district }}</h5>
+                <h5 class="card-text">{{ name.taluk }}</h5>
+                <h5 class="card-text">{{ name.village }}</h5>
+                <h5 class="card-text">{{ name.tuition }}</h5>
+                {% if tutor %}
+                    <a class="btn btn-primary" href="/admin/tutor/{{ name.username }}">View</a>
+                {% endif %}
+                {% if student %}
+                    <a class="btn btn-primary" href="/admin/student/{{ name.username }}">View</a>
+                {% endif %}
+                {% if marketer %}
+                    <a class="btn btn-primary" href="/admin/marketer/{{ name.username }}">View</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<div class=" row justify-content-center">
+    {% if search.set %}
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#byname" aria-expanded="false" aria-controls="collapseExample">
+            Search result by SET
+        </button> 
+    </p>
+    <div class="collapse" id="byname">
+        <h4>Search result by SET</h4>
+        {% for name in search.set %}
+        <div class="card bg-dark text-light m-2 ">
+            <div class="card-header w-100 ">
+                {{name.fname}}
+            </div>
+            <div class="card-body">
+                <h5 class=" card-text">{{ name.username }}</h5>
+                <h5 class="card-text">{{ name.email }}</h5>
+                <h5 class="card-text">{{ name.phone }}</h5>
+                <h5 class="card-text">{% if name.ismale %}
+                Male {% else %} Female {% endif %}</h5>
+                <h5 class="card-text">{{ name.state }}</h5>
+                <h5 class="card-text">{{ name.district }}</h5>
+                <h5 class="card-text">{{ name.taluk }}</h5>
+                <h5 class="card-text">{{ name.village }}</h5>
+                <h5 class="card-text">{{ name.tuition }}</h5>
+                {% if tutor %}
+                    <a class="btn btn-primary" href="/admin/tutor/{{ name.username }}">View</a>
+                {% endif %}
+                {% if student %}
+                    <a class="btn btn-primary" href="/admin/student/{{ name.username }}">View</a>
+                {% endif %}
+                {% if marketer %}
+                    <a class="btn btn-primary" href="/admin/marketer/{{ name.username }}">View</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<div class=" row justify-content-center">
+    {% if search.bed %}
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#byname" aria-expanded="false" aria-controls="collapseExample">
+            Search result by Bed
+        </button> 
+    </p>
+    <div class="collapse" id="byname">
+        <h4>Search result by Bed</h4>
+        {% for name in search.bed %}
+        <div class="card bg-dark text-light m-2 ">
+            <div class="card-header w-100 ">
+                {{name.fname}}
+            </div>
+            <div class="card-body">
+                <h5 class=" card-text">{{ name.username }}</h5>
+                <h5 class="card-text">{{ name.email }}</h5>
+                <h5 class="card-text">{{ name.phone }}</h5>
+                <h5 class="card-text">{% if name.ismale %}
+                Male {% else %} Female {% endif %}</h5>
+                <h5 class="card-text">{{ name.state }}</h5>
+                <h5 class="card-text">{{ name.district }}</h5>
+                <h5 class="card-text">{{ name.taluk }}</h5>
+                <h5 class="card-text">{{ name.village }}</h5>
+                <h5 class="card-text">{{ name.tuition }}</h5>
+                {% if tutor %}
+                    <a class="btn btn-primary" href="/admin/tutor/{{ name.username }}">View</a>
+                {% endif %}
+                {% if student %}
+                    <a class="btn btn-primary" href="/admin/student/{{ name.username }}">View</a>
+                {% endif %}
+                {% if marketer %}
+                    <a class="btn btn-primary" href="/admin/marketer/{{ name.username }}">View</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
 <div class=" row justify-content-center">
     {% if search.names %}
     <p>
