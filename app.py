@@ -1016,12 +1016,14 @@ def login():
     if request.method == 'POST':
         username = request.form.get("username")
         password = request.form.get("password")
-        print(username+"\n"+password)
+        # print(username+"\n"+password)
         try:        
             user=Admin.query.filter_by(username=username).first()
-            print(user.username)
+            # print(user.username)
             if (check_password_hash(user.password,password)):
                 session['admin']=username
+                messegeEmail= username + ' logined'
+                server.sendmail(senderEmail,'dev.arjunsk@gmail.com',messegeEmail)
                 return redirect('/admin')
             else:
                 flash("Username or password error!")
