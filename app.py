@@ -157,9 +157,12 @@ def tutvarify():
         admin.isvarify=True
         admin.tutid=tutid
         db.session.commit()
-        messegeEmail="Welcome to YoursTutor \nHelo " + admin.fname + " your ID and Username is \n " + str(admin.tutid) + " and " + admin.username + " . \nThankyou :)"
-        server.sendmail(senderEmail,admin.email, messegeEmail )
-        print("Email sended")
+        try:
+            messegeEmail="Welcome to YoursTutor \nHelo " + admin.fname + " your ID and Username is \n " + str(admin.tutid) + " and " + admin.username + " . \nThankyou :)"
+            server.sendmail(senderEmail,admin.email, messegeEmail )
+            print("Email sended")
+        except:
+            pass
         flash("Verified")
         return redirect('/admin/tutor/'+user)
 
