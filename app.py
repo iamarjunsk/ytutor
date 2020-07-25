@@ -197,8 +197,11 @@ def tutassign():
         admin.tutor = tutname
         db.session.commit()
         messegeEmail="Helo " + admin.fname + " your ID and Username is \n " + str(admin.studid) + " and " + admin.username + "\nWe assigned a tutor for you named "+ tut.fname +" . \nThankyou :)"
-        server.sendmail(senderEmail,admin.email, messegeEmail )
-        print("Email sended")
+        try:
+            server.sendmail(senderEmail,admin.email, messegeEmail )
+            print("Email sended")
+        except:
+            pass
         flash("Tutor updated")
         return redirect('/admin/student/'+user)
 
@@ -294,9 +297,13 @@ def tutreg():
         ismale=bool(request.form.get("male"))
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
-        do =request.form.get("dob")
-        do = do.split('-')
-        dob = date(int(do[0]),int(do[1]),int(do[2]))
+        try:
+            do =request.form.get("dob")
+            do = do.split('-')
+            dob = date(int(do[0]),int(do[1]),int(do[2]))
+        except:
+            flash('Error found, Please enter again')
+            return redirect('/tutor/register')
         phone = str(request.form.get("phone"))
         if(len(phone)!=10):
             print(len(phone))
