@@ -23,7 +23,6 @@ else:
     app.debug=False
     app.config['SQLALCHEMY_DATABASE_URI'] = db
 
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False
 app.secret_key = secretkey
 
@@ -1187,6 +1186,7 @@ def adtut(username):
         adm=Admin.query.filter_by(username=user).first()
         if(adm):
             tutor=Tutor.query.filter_by(username=username).first()
+
             if(tutor):
                 if(tutor.ismale==True):
                     count=Tutor.query.filter_by(ismale=True, isvarify=True).count()
@@ -1276,6 +1276,13 @@ def home():
     tut=Tutor.query.filter_by(isvarify=True).count()
     return render_template('home.html',tut=tut)
 
+@app.route('/test')
+def test():
+    tutor = Tutor.query.filter(Tutor.id==10).first()
+    print(tutor.username+' '+ tutor.fname)
+    tutor.username="Sreelakshmi"
+    db.session.commit()
+    return 'hai'
 
 if __name__ == '__main__':
     app.run()
