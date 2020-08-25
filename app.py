@@ -15,7 +15,7 @@ from secrets import secretkey,email,emailpassword,db
 
 app=Flask(__name__)
 
-ENV='prod'
+ENV='dev'
 if ENV == 'dev':
     app.debug=True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost/yt'
@@ -282,6 +282,7 @@ def marketer():
 @app.route('/tutor/register',methods=['GET','POST'])
 def tutreg():
     if request.method == "POST" :
+        print("check point")
         name = request.form.get("name")
         username = request.form.get("username")
         email = request.form.get("email")
@@ -292,7 +293,7 @@ def tutreg():
         checkusr = Tutor.query.filter_by(username=username).first()
         if(checkusr):
             flash("Username already taken")
-            return redirect('tutor/register')
+            return redirect('/tutor/register')
         ismale=bool(request.form.get("male"))
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
