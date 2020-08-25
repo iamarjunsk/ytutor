@@ -349,7 +349,8 @@ def tutreg():
             user=Tutor(email = email, fname = name, username = username, password = password, dob = dob, phone = phone, pin = pin, state = state, district = district, block = block, location = location, image = image, ismale = ismale, qualification = qualification, Bed = Bed, SET = SET, NET = NET, pursuing = persuing, exInstitute = institute, exTime = extime, is1to5 = isto5, is6to12 = isto12, isUG = isug, isPG = ispg, isCoaching = iscoaching, ugBrach = ugbranch, pgBrach = pgbranch, coachBrach = coachbranch, tutionopt = tuition, syllabus = syllabus, others = others, isOnline = isonline)            
             db.session.add(user)
             db.session.commit()
-            print('commited')
+            # print('commited')
+            flash("Successfully Registered")
             return redirect('/tutor')
         else:
             flash("Password miss match")
