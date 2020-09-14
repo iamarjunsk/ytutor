@@ -1,214 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
-
-    <title>YoursTutor</title>
-		<!-- Loading third party fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Arvo:400,700|" rel="stylesheet">
-		<!-- Loading main css file -->
-    <link rel="stylesheet" href="../static/style.css">
-    <link rel="stylesheet" href="../static/idStyle.css">
-    <link rel="shortcut icon" href="../satic/favicon.ico" type="image/x-icon">
-
-    <link href="../static/fonts/font-awesome.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/417090db95.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div id="site-content">
-			<header class="site-header">
-				<div class="primary-header">
-					<div class="container">
-						<a href="/" id="branding">
-							<img id="Tlogo" src="../static/yourstutor.png" alt="YT">
-							<h1 class="site-title"><!--YoursTutor--></h1>
-						</a> <!-- #branding -->
-
-						<div class="main-navigation">
-							<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-							<ul class="menu">
-								{% if student%}
-									<li class="menu-item current-menu-item"><a href="/"><i class="fa fa-graduation-cap" aria-hidden="true"></i>  {{student}}</a></li>
-								{% endif %}
-								{% if tutor%}
-									<li class="menu-item current-menu-item"><a href="/"><i class="fa fa-book" aria-hidden="true"></i>  {{tutor}}</a></li>
-								{% endif %}
-								<li class="menu-item current-menu-item"><a href="/">Home</a></li>
-								<li class="menu-item"><a href="/tutor/login">Become a tutor</a></li>
-								<li class="menu-item"><a href="/tutor">Tutor profile</a></li>
-								<li class="menu-item"><a href="/student/login">Need tuition?</a></li>
-								<li class="menu-item"><a href="/student">Student profile</a></li>
-								<li class="menu-item"><a href="/marketer">Marketer</a></li>
-						<!--		<li class="menu-item"><a href="">Admin</a></li>  -->
-
-							</ul> <!-- .menu -->
-						</div> <!-- .main-navigation -->
-
-						<div class="mobile-navigation"></div>
-					</div> <!-- .container -->
-				</div> <!-- .primary-header -->
-
-				<div class="home-slider">
-					<div class="container">
-						<div class="slider">
-							<ul class="slides">
-
-                                <div class="container">
-                                    <div class="nv" id="notes"><h1>Learn Live <strong>Online</strong> and <strong>Offline</strong></h1>
-                                     <div class="">
-			<h5 class="subtag">&#10004 From India's Best Teachers</h5>
-			<!-- <h5 class="subtag">&#10004 We have verified best {{tut}} tutors</h5>   -->
-            <h5 class="subtag">&#10004 In English or Your Preferred Language</h5>
-            <h5 class="subtag">&#10004 Available as your preference</h5>
-            <div style="margin-top: 80px;">
-            <h4 id="var">Qualified and Verified Tutors</h4>
-            <p>Yourstutor provide best home , online tuitions and training for overall development of the students.</p>
-          </div>
-          </div>
-                                    </div>
-<div class="nv" id="nv">
-  <div class="list-group">
-    <a href="/tutor" class="list-group-item">Tutor profile</a>
-	<a href="/tutor/register" class="list-group-item">Become A Tutor</a>
-	<a href="/student/register" class="list-group-item">Need tuition?</a>
-	<a href="/student" class="list-group-item">Student profile</a>
-  </div>
-
-  <div class="list-group">
-	<a href="/marketer/register" class="list-group-item">Become A Marketer</a>
-  </div>
-</div>
-
-</div>
-
-
-
-
-
-							</ul>
-                            <!-- .slides -->
-						</div>
-                        <!-- .slider -->
-					</div>
-                    <!-- .container -->
-				</div>
-                <!-- .home-slider -->
-			</header>
-		</div>
-
-		<main class="main-content">
-			<div class="fullwidth-block">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4">
-							<h2 class="section-title"><i class=""></i> Home Tuition</h2>
-							<ul class="posts">
-								<li class="post">
-									<h3 class="entry-title"><a href="#">Get Personalized Attention: With 40-50 students in a class, the teacher is not able to give personal attention to every student.</a></h3>
-
-								</li>
-								<li class="post">
-									<h3 class="entry-title"><a href="#"></a></h3>
-									<h3 class="entry-title"><a href="#"> Involvement of Parents</a></h3>
-
-								</li>
-								<li class="post">
-									<h3 class="entry-title"><a href="#">Freedom to Ask Questions</a></h3>
-
-								</li>
-							</ul>
-
-						</div>
-						<div class="col-md-4">
-							<h2 class="section-title"><i class=""></i> IELTS </h2>
-							<ul class="posts">
-								<li class="post">
-									<h3 class="entry-title"><a href="#">You will gain better knowledge of the English language and enhance your own set of skills. With expert tutors, you will improve your skills in reading, writing, listening, and speaking English.</a></h3>
-
-								</li>
-							</ul>
-
-						</div>
-						<div class="col-md-4">
-							<h2 class="section-title"><i class=""></i> Entrance </h2>
-							<ul class="posts">
-								<li class="post">
-									<h3 class="entry-title"><a href="#">Entrance coaching for most of the exams.</a></h3>
-
-								</li>
-								<li class="post">
-									<h3 class="entry-title"><a href="#">Subjects: Physics, Chemistry, Computer, Mathematics and Biology.</a></h3>
-
-								<li class="post">
-									<h3 class="entry-title"><a href="#">Learn from your home. Video theory classes, detailed study notes</a></h3>
-
-								</li>
-							</ul>
-
-						</div>
-					</div>
-                    <!-- .row -->
-				</div>
-			</div>
-            <!-- .fullwidth-block -->
-
-           	</main>
-
-			<div style=" width: 100%; display: flex; justify-content: center; flex-wrap: wrap; ">
-				<iframe style=" margin: 20px;" width="360" height="315" src="https://www.youtube.com/embed/j9Jds-k097A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-				<iframe style=" margin: 20px;" width="360" height="315" src="https://www.youtube.com/embed/daOISw5dBp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
-		    </div>
-
-
-
-		<footer class="site-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<div class="widget">
-							<h3 class="widget-title">Contact us</h3>
-							<address>YoursTutor <br></address>
-
-							<a href="mailto:theyourstutor@gmail.com">theyourstutor@gmail.com</a> <br>
-							<a href="tel:+919074569745">+919074569745</a>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="widget">
-							<h3 class="widget-title">Social media</h3>
-							<p>Send your feedback and queries on</p>
-							<div class="social-links circle">
-
-									<a style="color: rgb(24, 34, 173);" href="https://www.facebook.com/Yourstutor-103362767684112/" class=""><i class="fab fa-facebook-f fa-2x"></i></a>
-
-								<a style="margin-top: 0px; color: rgb(221, 104, 26);" href="https://www.instagram.com/yourstutor_/"><i class="fab fa-instagram fa-2x"></i></a>
-								<a style="margin-top: 0px; color: rgb(221, 104, 26);" href="https://www.youtube.com/channel/UCVKzPQztvbNb_uF6QQLcj6Q"><i class="fab fa-youtube fa-2x"></i></a>
-						<!--		<a href="#"><i class="fa fa-pinterest"></i></a>  -->
-							</div>
-						</div>
-					</div>
-
-
-
-
-
-
-				</div>
-
-				<div class="copy"></div>
-			</div>
-
-		</footer>
-
-		<script src="../static/js/jquery-1.11.1.min.js"></script>
-		<script src="../static/js/plugins.js"></script> 
-		<script src="../static/js/app.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <!-- <link rel="manifest" href="/manifest.json" /> -->
+    <title>Yourstutor</title>
+    <link href="../static/2.f3cffc9e.chunk.css" rel="stylesheet" />
+    <link href="../static/main.0aec2a69.chunk.css" rel="stylesheet" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+      !(function (e) {
+        function t(t) {
+          for (
+            var n, l, f = t[0], i = t[1], a = t[2], c = 0, s = [];
+            c < f.length;
+            c++
+          )
+            (l = f[c]),
+              Object.prototype.hasOwnProperty.call(o, l) &&
+                o[l] &&
+                s.push(o[l][0]),
+              (o[l] = 0);
+          for (n in i)
+            Object.prototype.hasOwnProperty.call(i, n) && (e[n] = i[n]);
+          for (p && p(t); s.length; ) s.shift()();
+          return u.push.apply(u, a || []), r();
+        }
+        function r() {
+          for (var e, t = 0; t < u.length; t++) {
+            for (var r = u[t], n = !0, f = 1; f < r.length; f++) {
+              var i = r[f];
+              0 !== o[i] && (n = !1);
+            }
+            n && (u.splice(t--, 1), (e = l((l.s = r[0]))));
+          }
+          return e;
+        }
+        var n = {},
+          o = { 1: 0 },
+          u = [];
+        function l(t) {
+          if (n[t]) return n[t].exports;
+          var r = (n[t] = { i: t, l: !1, exports: {} });
+          return e[t].call(r.exports, r, r.exports, l), (r.l = !0), r.exports;
+        }
+        (l.m = e),
+          (l.c = n),
+          (l.d = function (e, t, r) {
+            l.o(e, t) ||
+              Object.defineProperty(e, t, { enumerable: !0, get: r });
+          }),
+          (l.r = function (e) {
+            "undefined" != typeof Symbol &&
+              Symbol.toStringTag &&
+              Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+              Object.defineProperty(e, "__esModule", { value: !0 });
+          }),
+          (l.t = function (e, t) {
+            if ((1 & t && (e = l(e)), 8 & t)) return e;
+            if (4 & t && "object" == typeof e && e && e.__esModule) return e;
+            var r = Object.create(null);
+            if (
+              (l.r(r),
+              Object.defineProperty(r, "default", { enumerable: !0, value: e }),
+              2 & t && "string" != typeof e)
+            )
+              for (var n in e)
+                l.d(
+                  r,
+                  n,
+                  function (t) {
+                    return e[t];
+                  }.bind(null, n)
+                );
+            return r;
+          }),
+          (l.n = function (e) {
+            var t =
+              e && e.__esModule
+                ? function () {
+                    return e.default;
+                  }
+                : function () {
+                    return e;
+                  };
+            return l.d(t, "a", t), t;
+          }),
+          (l.o = function (e, t) {
+            return Object.prototype.hasOwnProperty.call(e, t);
+          }),
+          (l.p = "/");
+        var f = (this.webpackJsonptutor = this.webpackJsonptutor || []),
+          i = f.push.bind(f);
+        (f.push = t), (f = f.slice());
+        for (var a = 0; a < f.length; a++) t(f[a]);
+        var p = i;
+        r();
+      })([]);
+    </script>
+    <script src="../static/2.1f51349e.chunk.js"></script>
+    <script src="../static/main.d787a8e6.chunk.js"></script>
+  </body>
 </html>

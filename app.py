@@ -1280,10 +1280,13 @@ def home():
 
 @app.route('/test')
 def test():
-    tutor = Tutor.query.filter(Tutor.id==10).first()
-    print(tutor.username+' '+ tutor.fname)
-    tutor.username="Sreelakshmi"
-    db.session.commit()
+    tutor = Tutor.query.all()
+    for i in tutor:
+        if(i.username=='12345'):
+            print(i.username)
+            i.username='maheeshabenzy@gmail.com'
+            db.session.commit()
+        # print(i.username+"space")
     return 'hai'
 
 if __name__ == '__main__':
