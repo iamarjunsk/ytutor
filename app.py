@@ -285,6 +285,8 @@ def tutreg():
         print("check point")
         name = request.form.get("name")
         username = request.form.get("username")
+        if username[-1] == " ":
+            username=username[:-1] 
         email = request.form.get("email")
         checkEm = Tutor.query.filter_by(email=email).first()
         if(checkEm):
@@ -1275,19 +1277,19 @@ def addadmin():
 
 @app.route('/')
 def home():
-    tut=Tutor.query.filter_by(isvarify=True).count()
-    return render_template('home.html',tut=tut)
+    return render_template('hm.html')
 
 @app.route('/test')
 def test():
-    tutor = Tutor.query.all()
-    for i in tutor:
-        if(i.username=='12345'):
-            print(i.username)
-            i.username='maheeshabenzy@gmail.com'
-            db.session.commit()
-        # print(i.username+"space")
-    return 'hai'
+    # tutor = Tutor.query.all()
+    # for i in tutor:
+    #     if i.username == "Ashique ":
+    #         i.username = "Ashique"
+    #         db.session.commit()
+    #     # print(i.username+"*")
+    # return 'hai'
+    return render_template('hm.html')
+
 
 if __name__ == '__main__':
     app.run()
@@ -1296,3 +1298,4 @@ if __name__ == '__main__':
 
 
     #https://ytutor.herokuapp.com/ | https://git.heroku.com/ytutor.git
+
