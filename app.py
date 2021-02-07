@@ -29,13 +29,16 @@ app.secret_key = secretkey
 
 db = SQLAlchemy(app)
 
+try:
+    senderEmail=email
+    emailPassword=emailpassword
+    server=smtplib.SMTP('smtp.gmail.com',587)
+    server.starttls()
+    server.login(senderEmail,emailPassword)
+    print("login success")
+except:
+    pass
 
-senderEmail=email
-emailPassword=emailpassword
-server=smtplib.SMTP('smtp.gmail.com',587)
-server.starttls()
-server.login(senderEmail,emailPassword)
-print("login success")
 
 class Tutor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
